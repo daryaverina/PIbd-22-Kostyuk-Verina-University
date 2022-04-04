@@ -2,7 +2,7 @@
 
 namespace UniversityContracts.ViewModels
 {
-    internal class SubjectViewModel
+    public class SubjectViewModel
     {
         public int Id { get; set; }
 
