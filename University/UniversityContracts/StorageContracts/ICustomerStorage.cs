@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UniversityContracts.StorageContracts
 {
-    internal interface ICustomerStorage
+    public interface ICustomerStorage
     {
         List<CustomerViewModel> GetFullList();
 
