@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UniversityDatabaseImplement.Models
 {
-    // Поставщик
+    // Студент
     public class Student
     {
         // Номер зачетки
