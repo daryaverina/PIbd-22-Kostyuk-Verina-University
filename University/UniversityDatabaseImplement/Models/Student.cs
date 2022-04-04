@@ -25,7 +25,7 @@ namespace UniversityDatabaseImplement.Models
         public virtual List<DecreeStudent> DecreeStudents { get; set; }
 
         [ForeignKey("StudentId")]
-        public virtual List<ПотокStudent> ПотокStudents { get; set; }
+        public virtual List<FlowStudent> StudentFlows { get; set; }
     }
 }
 

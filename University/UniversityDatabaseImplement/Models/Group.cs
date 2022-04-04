@@ -15,6 +15,9 @@ namespace UniversityDatabaseImplement.Models
         public int SemestersAmount { get; set; }
         [Required]
         public DateTime DateCreated { get; set; }
+
+        [ForeignKey("GroupId")]
+        public virtual List<DecreeGroup> GroupDecrees { get; set; }
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
     }
