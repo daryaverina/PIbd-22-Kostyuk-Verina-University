@@ -7,4 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BusinessLogics\" />
+    <Folder Include="OfficePackage\HelperEnums\" />
+    <Folder Include="OfficePackage\HelperModels\" />
+  </ItemGroup>
+
 </Project>
