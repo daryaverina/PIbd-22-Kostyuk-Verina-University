@@ -2,7 +2,8 @@
 
 namespace UniversityContracts.ViewModels
 {
-    public class CustomerViewModel
+    // Поставщик
+    public class ProviderViewModel
     {
         public int Id { get; set; }
 
@@ -12,14 +13,13 @@ namespace UniversityContracts.ViewModels
         [DisplayName("Пароль")]
         public string Password { get; set; }
 
-        [DisplayName("Имя")]
-        public string Name { get; set; }
+        [DisplayName("ФИО")]
+        public string FullName { get; set; }
 
-        [DisplayName("Почта")]
+        [DisplayName("Электронная почта")]
         public string Email { get; set; }
 
         [DisplayName("Номер телефона")]
-        public string Phone { get; set; }
-
+        public string PhoneNumber { get; set; }
     }
 }

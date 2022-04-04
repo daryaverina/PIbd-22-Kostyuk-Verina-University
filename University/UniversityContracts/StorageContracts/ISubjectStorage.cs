@@ -1,14 +1,20 @@
 ﻿using UniversityContracts.BindingModels;
 using UniversityContracts.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UniversityContracts.StorageContracts
 {
     public interface ISubjectStorage
     {
+        List<SubjectViewModel> GetFullList();
+
+        List<SubjectViewModel> GetFilteredList(SubjectBindingModel model);
+
+        SubjectViewModel GetElement(SubjectBindingModel model);
+
+        void Insert(SubjectBindingModel model);
+
+        void Update(SubjectBindingModel model);
+
+        void Delete(SubjectBindingModel model);
     }
 }
