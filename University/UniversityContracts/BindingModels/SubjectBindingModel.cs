@@ -5,6 +5,6 @@
         public int? Id { get; set; }
         public string Subjectname { get; set; }
         public int HoursAmount { get; set; }
-        public int? CustomerId { get; set; }
+        public int? CustomerID { get; set; }
     }
 }

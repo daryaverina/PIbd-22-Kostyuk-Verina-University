@@ -6,6 +6,6 @@
         public string Speciality { get; set; }
         public int SemestersAmount { get; set; }
         public DateTime DateCreated { get; set; }
-        public int? CustomerId { get; set; }
+        public int? CustomerID { get; set; }
     }
 }

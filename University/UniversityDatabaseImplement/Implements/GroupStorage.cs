@@ -149,7 +149,7 @@ namespace UniversityDatabaseImplement.Implements
                 Speciality = group.Speciality,
                 SemestersAmount = group.SemestersAmount,
                 DateCreated = group.DateCreated
-                .ToDictionary(recCLP => recCLP.LoanProgramId, recCLP => (recCLP.LoanProgram?.LoanProgramName, recCLP.Count))
+                .ToDictionary(recCLP => recCLP.Id, recCLP => (recCLP.LoanProgram?.LoanProgramName, recCLP.Count))
             };
         }
     }

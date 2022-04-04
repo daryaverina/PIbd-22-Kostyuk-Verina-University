@@ -19,7 +19,7 @@ namespace UniversityDatabaseImplement.Models
         public virtual List<Group> Groups { get; set; }
 
         [ForeignKey("FlowId")]
-        public virtual List<SubjectFlow> SubjectFlows { get; set; }
+        public virtual List<SubjectFlow> FlowSubjects { get; set; }
 
         [ForeignKey("FlowId")]
         public virtual List<FlowStudent> FlowStudents { get; set; }
