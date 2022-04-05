@@ -30,16 +30,13 @@ namespace UniversityDatabaseImplement.Implements
             }
 
             using var context = new UniversityDatabase();
-
-            // ПОПРАВИТЬ: фильтрацию после того как
-            //// (бизнес логика) ПОПРАВИТЬ: добавить другое отличительное поле приказу (не номер) ИЛИ разделять номер и айди
-
+       
             return context.Decrees
             .Include(rec => rec.DecreeStudents)
             .ThenInclude(rec => rec.Student)
             .Include(rec => rec.DecreeGroups)
             .ThenInclude(rec => rec.Group)
-            .Where(rec => rec.Id.Equals(model.Id)) // вот тут
+            .Where(rec => rec.DecreeNumber.Equals(model.DecreeNumber)) 
             .ToList()
             .Select(CreateModel)
             .ToList();
@@ -60,7 +57,7 @@ namespace UniversityDatabaseImplement.Implements
             .Include(rec => rec.DecreeGroups)
             .ThenInclude(rec => rec.Group)
             .ToList()
-            .FirstOrDefault(rec => rec.Id == model.Id); // тут тоже можно (см выше)
+            .FirstOrDefault(rec => rec.Id == model.Id || rec.DecreeNumber == model.DecreeNumber); 
 
             return decree != null ? CreateModel(decree) : null;
         }

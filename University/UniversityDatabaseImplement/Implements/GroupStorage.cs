@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UniversityContracts.StorageContracts;
+﻿using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
 using UniversityContracts.BindingModels;
 using UniversityDatabaseImplement.Models;
