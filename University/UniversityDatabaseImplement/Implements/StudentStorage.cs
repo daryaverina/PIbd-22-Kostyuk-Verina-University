@@ -151,7 +151,7 @@ namespace UniversityDatabaseImplement.Implements
                 Id = student.Id,
                 FullName = student.FullName,
                 PhoneNumber = student.PhoneNumber,
-                DecreeStudents = student.DecreeStudents.ToDictionary(recDS => recDS.DecreeId, recDS => recDS.Decree.DateOfCreation)
+                DecreeStudents = student.DecreeStudents.ToDictionary(recDS => recDS.DecreeId, recDS => recDS.Decree?.DecreeNumber)
             };
         }
     }

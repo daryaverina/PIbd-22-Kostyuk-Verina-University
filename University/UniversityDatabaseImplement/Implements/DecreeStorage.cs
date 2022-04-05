@@ -159,7 +159,7 @@ namespace UniversityDatabaseImplement.Implements
             {
                 Id = decree.Id,
                 DateOfCreation = decree.DateOfCreation,
-                DecreeGroups = decree.DecreeGroups.ToDictionary(recDG => recDG.GroupId, recDG => recDG.Group.Speciality)
+                DecreeGroups = decree.DecreeGroups.ToDictionary(recDG => recDG.GroupId, recDG => recDG.Group?.Speciality)
             };
         }
     }

@@ -6,8 +6,10 @@ namespace UniversityDatabaseImplement.Models
     // Приказ
     public class Decree
     {
-        // Номер приказа
         public int Id { get; set; }
+
+        [Required]
+        public string DecreeNumber { get; set; }
 
         [Required]
         public DateTime DateOfCreation { get; set; }
