@@ -33,6 +33,8 @@ namespace UniversityBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(StudentBindingModel model)
         {
+            // ПОПРАВИТЬ: если добавлю поля с паспортом и др проверять по ним
+
             var element = _studentStorage.GetElement(new StudentBindingModel { FullName = model.FullName });
 
             if (element != null && element.Id != model.Id)
