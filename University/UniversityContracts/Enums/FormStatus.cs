@@ -1,6 +1,6 @@
-﻿// Форма обучения
-namespace UniversityContracts.Enums
+﻿namespace UniversityContracts.Enums
 {
+    // Форма обучения
     public enum FormStatus
     {
         Очно = 0,

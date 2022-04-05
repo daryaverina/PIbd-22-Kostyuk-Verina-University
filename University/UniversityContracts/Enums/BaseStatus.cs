@@ -1,6 +1,6 @@
-﻿// Основа обучения
-namespace UniversityContracts.Enums
+﻿namespace UniversityContracts.Enums
 {
+    // Основа обучения
     public enum BaseStatus
     {
         Бюджет = 0,

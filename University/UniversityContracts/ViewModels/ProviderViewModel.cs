@@ -10,6 +10,7 @@ namespace UniversityContracts.ViewModels
         [DisplayName("Логин")]
         public string Login { get; set; }
 
+        // ПОПРАВИТЬ: нужно ли выводить пароли?
         [DisplayName("Пароль")]
         public string Password { get; set; }
 

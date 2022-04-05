@@ -2,9 +2,6 @@
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
 using UniversityDatabaseImplement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace UniversityDatabaseImplement.Implements
@@ -123,8 +120,6 @@ namespace UniversityDatabaseImplement.Implements
             student.FullName = model.FullName;
             student.PhoneNumber = model.PhoneNumber;
             student.ProviderId = (int)model.ProviderId;
-
-            // StudentFlows реализуется на стороне даши ???
 
             if (model.Id.HasValue)
             {

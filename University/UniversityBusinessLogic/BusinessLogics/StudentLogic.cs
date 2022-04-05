@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UniversityContracts.BindingModels;
+﻿using UniversityContracts.BindingModels;
 using UniversityContracts.BusinessLogicsContracts;
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
@@ -33,7 +31,7 @@ namespace UniversityBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(StudentBindingModel model)
         {
-            // ПОПРАВИТЬ: если добавлю поля с паспортом и др проверять по ним
+            // ПОПРАВИТЬ: если добавлю студенту поля с паспортом и др проверять по ним ??
 
             var element = _studentStorage.GetElement(new StudentBindingModel { FullName = model.FullName });
 

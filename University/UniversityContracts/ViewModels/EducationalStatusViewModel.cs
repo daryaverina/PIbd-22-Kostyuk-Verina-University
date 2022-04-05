@@ -7,6 +7,8 @@ namespace UniversityContracts.ViewModels
     public class EducationalStatusViewModel
     {
         public int Id { get; set; }
+
+        [DisplayName("Номер зачетки студента")]
         public int StudentId { get; set; }
 
         [DisplayName("Основа обучения")]

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UniversityContracts.BindingModels;
+﻿using UniversityContracts.BindingModels;
 using UniversityContracts.ViewModels;
 
 namespace UniversityContracts.BusinessLogicsContracts

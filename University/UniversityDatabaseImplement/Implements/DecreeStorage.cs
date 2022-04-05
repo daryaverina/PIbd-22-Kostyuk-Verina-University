@@ -2,9 +2,6 @@
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
 using UniversityDatabaseImplement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace UniversityDatabaseImplement.Implements
@@ -34,8 +31,8 @@ namespace UniversityDatabaseImplement.Implements
 
             using var context = new UniversityDatabase();
 
-            // ПОПРАВИТЬ: фильтрацию после  того как
-            // (бизнес логика) ПОПРАВИТЬ: добавить другое отличительное поле приказу (не номер) ИЛИ разделять номер и айди
+            // ПОПРАВИТЬ: фильтрацию после того как
+            //// (бизнес логика) ПОПРАВИТЬ: добавить другое отличительное поле приказу (не номер) ИЛИ разделять номер и айди
 
             return context.Decrees
             .Include(rec => rec.DecreeStudents)
@@ -137,7 +134,8 @@ namespace UniversityDatabaseImplement.Implements
                 var decreeGroups = context.DecreeGroups.Where(rec => rec.DecreeId == model.Id.Value).ToList();
 
                 // Удалили те, которых нет в модели
-                context.DecreeStudents.RemoveRange(decreeGroups.Where(rec => !model.DecreeGroups.ContainsKey(rec.GroupId)).ToList()); // ПОПРАВИТЬ: что не так?
+                // ПОПРАВИТЬ: что не так?
+                context.DecreeStudents.RemoveRange(decreeGroups.Where(rec => !model.DecreeGroups.ContainsKey(rec.GroupId)).ToList());
                 context.SaveChanges();
             }
 
