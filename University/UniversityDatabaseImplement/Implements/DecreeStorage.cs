@@ -124,6 +124,7 @@ namespace UniversityDatabaseImplement.Implements
             }
         }
 
+        // ПОПРАВИТЬ: создание и изменение записи приказа с возможностью выбора нескольких студентов из списка
         private static Decree CreateModel(DecreeBindingModel model, Decree decree, UniversityDatabase context)
         {
             decree.DateOfCreation = model.DateOfCreation;

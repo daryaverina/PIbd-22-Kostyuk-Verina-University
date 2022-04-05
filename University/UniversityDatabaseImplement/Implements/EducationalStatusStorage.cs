@@ -87,7 +87,6 @@ namespace UniversityDatabaseImplement.Implements
 
         private static EducationalStatus CreateModel(EducationalStatusBindingModel model, EducationalStatus status)
         {
-
             status.BStatus = model.BStatus;
             status.FStatus = model.FStatus;
             status.DateOfChange = model.DateOfChange;
