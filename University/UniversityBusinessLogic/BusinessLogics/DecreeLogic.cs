@@ -31,10 +31,7 @@ namespace UniversityBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(DecreeBindingModel model)
         {
-
-            // ПОПРАВИТЬ: добавить другое отличительное поле приказу (не номер) ИЛИ разделять номер и айди
-
-            var element = _decreeStorage.GetElement(new DecreeBindingModel { Id = model.Id });
+            var element = _decreeStorage.GetElement(new DecreeBindingModel { DecreeNumber = model.DecreeNumber });
 
             if (element != null && element.Id != model.Id)
             {

@@ -13,5 +13,7 @@ namespace UniversityContracts.ViewModels
 
         [DisplayName("Номер телефона")]
         public string PhoneNumber { get; set; }
+
+        public Dictionary<int, string> DecreeStudents { get; set; }
     }
 }
