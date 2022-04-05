@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UniversityContracts.BindingModels;
+﻿using UniversityContracts.BindingModels;
 using UniversityContracts.BusinessLogicsContracts;
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;

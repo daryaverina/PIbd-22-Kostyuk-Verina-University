@@ -11,7 +11,5 @@
         public virtual Decree Decree { get; set; }
 
         public virtual Student Student { get; set; }
-
-        // сздание записи приказа с возможностью выбора нескольких!!!! студентов из списка??
     }
 }

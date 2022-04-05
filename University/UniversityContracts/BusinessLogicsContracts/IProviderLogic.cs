@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UniversityContracts.BindingModels;
+﻿using UniversityContracts.BindingModels;
 using UniversityContracts.ViewModels;
 
 namespace UniversityContracts.BusinessLogicsContracts
@@ -8,7 +7,6 @@ namespace UniversityContracts.BusinessLogicsContracts
     {
         List<ProviderViewModel> Read(ProviderBindingModel model);
 
-        // Регистрация и авторизация
         void CreateOrUpdate(ProviderBindingModel model);
 
         void Delete(ProviderBindingModel model);
