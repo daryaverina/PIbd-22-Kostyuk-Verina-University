@@ -135,8 +135,7 @@ namespace UniversityDatabaseImplement.Implements
                 var decreeGroups = context.DecreeGroups.Where(rec => rec.DecreeId == model.Id.Value).ToList();
 
                 // Удалили те, которых нет в модели
-                // ПОПРАВИТЬ: что не так?
-                context.DecreeStudents.RemoveRange(decreeGroups.Where(rec => !model.DecreeGroups.ContainsKey(rec.GroupId)).ToList());
+                context.DecreeGroups.RemoveRange(decreeGroups.Where(rec => !model.DecreeGroups.ContainsKey(rec.GroupId)).ToList());
                 context.SaveChanges();
             }
 
