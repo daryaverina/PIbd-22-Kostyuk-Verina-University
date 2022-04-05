@@ -78,7 +78,7 @@ namespace UniversityDatabaseImplement.Implements
             using var transaction = context.Database.BeginTransaction();
             try
             {
-                context.Subjects.Add(CreateModel(model, new Subject()));
+                context.Subjects.Add(CreateModel(model, new Subject(), context));
                 context.SaveChanges();
                 transaction.Commit();
             }
@@ -101,7 +101,7 @@ namespace UniversityDatabaseImplement.Implements
                 {
                     throw new Exception("Дисциплина не найдена");
                 }
-                CreateModel(model, element);
+                CreateModel(model, element, context);
                 context.SaveChanges();
                 transaction.Commit();
             }
@@ -111,13 +111,35 @@ namespace UniversityDatabaseImplement.Implements
                 throw;
             }
         }
-        private static Subject CreateModel(SubjectBindingModel model, Subject subject)
+        private static Subject CreateModel(SubjectBindingModel model, Subject subject, UniversityDatabase context)
         {
-            subject.Id = (int)model.Id;
-            subject.SubjectName = (int)model.SubjectName;
+            subject.SubjectName = model.SubjectName;
             subject.HoursAmount = model.HoursAmount;
+            subject.CustomerID = (int)model.CustomerID;
+
+            if (model.Id.HasValue)
+            {
+                var flowSubjects = context.SubjectFlows.Where(rec => rec.SubjectId == model.Id.Value).ToList();
+
+                // Удалили те, которых нет в модели
+                context.SubjectFlows.RemoveRange(flowSubjects.Where(rec => !model.SubjectFlows.ContainsKey(rec.FlowId)).ToList()); // ПОПРАВИТЬ: что не так?
+                context.SaveChanges();
+            }
+
+            // Добавили новые
+            foreach (var dg in model.SubjectFlows)
+            {
+                context.SubjectFlows.Add(new SubjectFlow
+                {
+                    Id = subject.Id,
+                    FlowId = dg.Key,
+                });
+                context.SaveChanges();
+            }
+
             return subject;
         }
+
         private static SubjectViewModel CreateModel(Subject subject)
         {
             return new SubjectViewModel
@@ -125,6 +147,7 @@ namespace UniversityDatabaseImplement.Implements
                 Id = subject.Id,
                 SubjectName = subject.SubjectName,
                 HoursAmount = subject.HoursAmount
+
             };
         }
     }

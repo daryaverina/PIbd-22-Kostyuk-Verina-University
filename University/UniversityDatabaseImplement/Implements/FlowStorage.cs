@@ -121,32 +121,30 @@ namespace UniversityDatabaseImplement.Implements
         private static Flow CreateModel(FlowBindingModel model, Flow flow, UniversityDatabase context)
         {
             flow.Faculty = model.Faculty;
-            flow.NumberOfCourse = model.NumberOfCourse;
+            flow.NumberOfCourse = (int)model.NumberOfCourse;
+            flow.CustomerID = (int)model.CustomerID;
+
             if (model.Id.HasValue)
             {
-                var lpCurreuncies = context.LoanProgramCurrencies.Where(rec =>
-                rec.LoanProgramId == model.Id.Value).ToList();
-                // удалили те, которых нет в модели
-                context.LoanProgramCurrencies.RemoveRange(lpCurreuncies.Where(rec =>
-                !model.LoanProgramCurrencies.ContainsKey(rec.CurrencyId)).ToList());
-                context.SaveChanges();
-                // обновили количество у существующих записей
-                foreach (var updateIngredient in lpCurreuncies)
-                {
-                    model.LoanProgramCurrencies.Remove(updateIngredient.CurrencyId);
-                }
+                var flowSubjects = context.SubjectFlows.Where(rec => rec.FlowId == model.Id.Value).ToList();
+
+                // Удалили те, которых нет в модели
+                context.SubjectFlows.RemoveRange(flowSubjects.Where(rec => !model.SubjectFlows.ContainsKey(rec.SubjectId)).ToList()); // ПОПРАВИТЬ: что не так?
                 context.SaveChanges();
             }
-            foreach (var wi in model.LoanProgramCurrencies)
+
+            // Добавили новые
+            foreach (var dg in model.SubjectFlows)
             {
-                context.LoanProgramCurrencies.Add(new LoanProgramCurrency
+                context.SubjectFlows.Add(new SubjectFlow
                 {
-                    LoanProgramId = loanProgram.Id,
-                    CurrencyId = wi.Key,
+                    Id = flow.Id,
+                    SubjectId = dg.Key,
                 });
                 context.SaveChanges();
             }
-            return loanProgram;
+
+            return flow;
         }
 
         private static FlowViewModel CreateModel(Flow flow)
@@ -155,10 +153,8 @@ namespace UniversityDatabaseImplement.Implements
             {
                 Id = flow.Id,
                 Faculty = flow.Faculty,
-                NumberOfCourse = flow.NumberOfCourse,
-                LoanProgramCurrencies = loanProgram.LoanProgramCurrencies
-            .ToDictionary(recII => recII.CurrencyId,
-            recII => (recII.Currency?.CurrencyName, recII.Currency.RubExchangeRate))
+                NumberOfCourse = flow.NumberOfCourse
+
             };
         }
     }

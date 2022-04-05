@@ -112,35 +112,35 @@ namespace UniversityDatabaseImplement.Implements
         private static Group CreateModel(GroupBindingModel model, Group group, UniversityDatabase context)
         {
             group.Speciality = model.Speciality;
-            group.SemestersAmount = (int)model.SemestersAmount; //TODO: надо?
+            group.SemestersAmount = model.SemestersAmount;
             group.DateCreated = model.DateCreated;
+            group.CustomerID = (int)model.CustomerID;
+
+            // StudentFlows реализуется на стороне даши ???
+
             if (model.Id.HasValue)
             {
-                var clientLoanPrograms = context.ClientLoanPrograms.Where(rec => rec.ClientId == model.Id.Value).ToList();
-                // удалили те, которых нет в модели
-                context.ClientLoanPrograms.RemoveRange(clientLoanPrograms.Where(rec => !model.ClientLoanPrograms.ContainsKey(rec.LoanProgramId)).ToList());
-                context.SaveChanges();
-                // обновили количество у существующих записей
-                foreach (var updateLoanProgram in clientLoanPrograms)
-                {
-                    updateLoanProgram.Count = model.ClientLoanPrograms[updateLoanProgram.LoanProgramId].Item2;
-                    model.ClientLoanPrograms.Remove(updateLoanProgram.LoanProgramId);
-                }
+                var groupDecrees = context.DecreeGroups.Where(rec => rec.GroupId == model.Id.Value).ToList();
+
+                // Удалили те, которых нет в модели
+                context.DecreeGroups.RemoveRange(groupDecrees.Where(rec => !model.DecreeGroups.ContainsKey(rec.DecreeId)).ToList());
                 context.SaveChanges();
             }
-            // добавили новые
-            foreach (var clp in model.ClientLoanPrograms)
+
+            // Добавили новые
+            foreach (var ds in model.DecreeGroups)
             {
-                context.ClientLoanPrograms.Add(new ClientLoanProgram
+                context.DecreeGroups.Add(new DecreeGroup
                 {
-                    ClientId = client.Id,
-                    LoanProgramId = clp.Key,
-                    Count = clp.Value.Item2
+                    GroupId = group.Id,
+                    DecreeId = ds.Key,
                 });
                 context.SaveChanges();
             }
+
             return group;
         }
+
         private static GroupViewModel CreateModel(Group group)
         {
             return new GroupViewModel
@@ -149,7 +149,6 @@ namespace UniversityDatabaseImplement.Implements
                 Speciality = group.Speciality,
                 SemestersAmount = group.SemestersAmount,
                 DateCreated = group.DateCreated
-                .ToDictionary(recCLP => recCLP.Id, recCLP => (recCLP.LoanProgram?.LoanProgramName, recCLP.Count))
             };
         }
     }
