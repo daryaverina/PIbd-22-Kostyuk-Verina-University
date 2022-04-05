@@ -10,5 +10,7 @@ namespace UniversityContracts.ViewModels
 
         [DisplayName("Дата принятия")]
         public DateTime DateOfCreation { get; set; }
+
+        public Dictionary<int, string> DecreeGroups { get; set; }
     }
 }

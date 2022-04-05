@@ -158,7 +158,8 @@ namespace UniversityDatabaseImplement.Implements
             return new DecreeViewModel
             {
                 Id = decree.Id,
-                DateOfCreation = decree.DateOfCreation
+                DateOfCreation = decree.DateOfCreation,
+                DecreeGroups = decree.DecreeGroups.ToDictionary(recDG => recDG.GroupId, recDG => recDG.Group.Speciality)
             };
         }
     }
