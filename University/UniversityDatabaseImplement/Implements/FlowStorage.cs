@@ -86,7 +86,7 @@ namespace UniversityDatabaseImplement.Implements
                 };
                 context.Flows.Add(flow);
                 context.SaveChanges();
-                CreateModel(model, flow, context);
+                CreateModel(model, flow);
                 transaction.Commit();
             }
             catch
@@ -108,7 +108,7 @@ namespace UniversityDatabaseImplement.Implements
                 {
                     throw new Exception("Поток не найден");
                 }
-                CreateModel(model, element, context);
+                CreateModel(model, element);
                 context.SaveChanges();
                 transaction.Commit();
             }
@@ -118,41 +118,22 @@ namespace UniversityDatabaseImplement.Implements
                 throw;
             }
         }
-        private static Flow CreateModel(FlowBindingModel model, Flow flow, UniversityDatabase context)
+        private static Flow CreateModel(FlowBindingModel model, Flow flow)
         {
             flow.Faculty = model.Faculty;
             flow.NumberOfCourse = (int)model.NumberOfCourse;
             flow.CustomerID = (int)model.CustomerID;
-
-            if (model.Id.HasValue)
-            {
-                var flowSubjects = context.SubjectFlows.Where(rec => rec.FlowId == model.Id.Value).ToList();
-
-                // Удалили те, которых нет в модели
-                context.SubjectFlows.RemoveRange(flowSubjects.Where(rec => !model.SubjectFlows.ContainsKey(rec.SubjectId)).ToList()); // ПОПРАВИТЬ: что не так?
-                context.SaveChanges();
-            }
-
-            // Добавили новые
-            foreach (var dg in model.SubjectFlows)
-            {
-                context.SubjectFlows.Add(new SubjectFlow
-                {
-                    Id = flow.Id,
-                    SubjectId = dg.Key,
-                });
-                context.SaveChanges();
-            }
-
             return flow;
         }
 
         private static FlowViewModel CreateModel(Flow flow)
         {
+            //выбор групп по потокам
             return new FlowViewModel
             {
                 Id = flow.Id,
                 Faculty = flow.Faculty,
+                Speciality = flow.Group.Speciality,
                 NumberOfCourse = flow.NumberOfCourse
 
             };

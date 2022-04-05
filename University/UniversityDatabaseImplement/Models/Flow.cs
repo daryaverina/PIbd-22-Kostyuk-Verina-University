@@ -15,6 +15,7 @@ namespace UniversityDatabaseImplement.Models
 
         public int CustomerID { get; set; }
 
+
         [ForeignKey("FlowId")]
         public virtual List<Group> Groups { get; set; }
 
@@ -25,5 +26,7 @@ namespace UniversityDatabaseImplement.Models
         public virtual List<FlowStudent> FlowStudents { get; set; }
 
         public virtual Customer Customer { get; set; }
+
+        public virtual Group Group { get; set; }
     }
 }

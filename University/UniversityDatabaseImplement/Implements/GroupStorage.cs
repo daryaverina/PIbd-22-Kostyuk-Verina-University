@@ -65,7 +65,7 @@ namespace UniversityDatabaseImplement.Implements
                 };
                 context.Groups.Add(group);
                 context.SaveChanges();
-                CreateModel(model, group, context);
+                CreateModel(model, group);
                 transaction.Commit();
             }
             catch
@@ -85,7 +85,7 @@ namespace UniversityDatabaseImplement.Implements
                 {
                     throw new Exception("Элемент не найден");
                 }
-                CreateModel(model, element, context);
+                CreateModel(model, element);
                 context.SaveChanges();
                 transaction.Commit();
             }
@@ -109,34 +109,14 @@ namespace UniversityDatabaseImplement.Implements
                 throw new Exception("Элемент не найден");
             }
         }
-        private static Group CreateModel(GroupBindingModel model, Group group, UniversityDatabase context)
+        private static Group CreateModel(GroupBindingModel model, Group group)
         {
+            //вставка групп без выбора
+
             group.Speciality = model.Speciality;
             group.SemestersAmount = model.SemestersAmount;
             group.DateCreated = model.DateCreated;
             group.CustomerID = (int)model.CustomerID;
-
-            // StudentFlows реализуется на стороне даши ???
-
-            if (model.Id.HasValue)
-            {
-                var groupDecrees = context.DecreeGroups.Where(rec => rec.GroupId == model.Id.Value).ToList();
-
-                // Удалили те, которых нет в модели
-                context.DecreeGroups.RemoveRange(groupDecrees.Where(rec => !model.DecreeGroups.ContainsKey(rec.DecreeId)).ToList());
-                context.SaveChanges();
-            }
-
-            // Добавили новые
-            foreach (var ds in model.DecreeGroups)
-            {
-                context.DecreeGroups.Add(new DecreeGroup
-                {
-                    GroupId = group.Id,
-                    DecreeId = ds.Key,
-                });
-                context.SaveChanges();
-            }
 
             return group;
         }

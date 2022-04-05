@@ -54,7 +54,7 @@ namespace UniversityDatabaseImplement.Implements
            .Include(rec => rec.SubjectFlows)
             .ThenInclude(rec => rec.Flow)
             .Include(rec => rec.Customer)
-            .Where(rec => rec.Id == model.Id)
+            .Where(rec => rec.SubjectName == model.SubjectName)
             .ToList()
             .Select(CreateModel)
             .ToList();
@@ -113,6 +113,7 @@ namespace UniversityDatabaseImplement.Implements
         }
         private static Subject CreateModel(SubjectBindingModel model, Subject subject, UniversityDatabase context)
         {
+            // предмет с выбором потока
             subject.SubjectName = model.SubjectName;
             subject.HoursAmount = model.HoursAmount;
             subject.CustomerID = (int)model.CustomerID;
