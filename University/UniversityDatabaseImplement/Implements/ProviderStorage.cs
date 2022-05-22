@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using UniversityContracts.BindingModels;
+﻿using UniversityContracts.BindingModels;
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
 using UniversityDatabaseImplement.Models;
@@ -13,11 +12,8 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Providers
-            .Include(rec => rec.Students)
-            .Include(rec => rec.Decrees)
-            .Include(rec => rec.EducationalStatuses)
-            .Select(CreateModel)
-            .ToList();
+                .Select(CreateModel)
+                .ToList();
         }
 
         public List<ProviderViewModel> GetFilteredList(ProviderBindingModel model)
@@ -30,12 +26,9 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Providers
-            .Include(rec => rec.Students)
-            .Include(rec => rec.Decrees)
-            .Include(rec => rec.EducationalStatuses)
-            .Where(rec => rec.Id == model.Id)
-            .Select(CreateModel)
-            .ToList();
+                .Where(rec => rec.Email == model.Email && rec.Password == model.Password)
+                .Select(CreateModel)
+                .ToList();
         }
 
         public ProviderViewModel GetElement(ProviderBindingModel model)
@@ -48,10 +41,7 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             var provider = context.Providers
-            .Include(rec => rec.Students)
-            .Include(rec => rec.Decrees)
-            .Include(rec => rec.EducationalStatuses)
-            .FirstOrDefault(rec => rec.Login == model.Login || rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.Email == model.Email || rec.Id == model.Id);
 
             return provider != null ? CreateModel(provider) : null;
         }
@@ -59,43 +49,23 @@ namespace UniversityDatabaseImplement.Implements
         public void Insert(ProviderBindingModel model)
         {
             using var context = new UniversityDatabase();
-            using var transaction = context.Database.BeginTransaction();
 
-            try
-            {
-                context.Providers.Add(CreateModel(model, new Provider()));
-                context.SaveChanges();
-                transaction.Commit();
-            }
-            catch
-            {
-                transaction.Rollback();
-                throw;
-            }
+            context.Providers.Add(CreateModel(model, new Provider()));
+            context.SaveChanges();
         }
 
         public void Update(ProviderBindingModel model)
         {
             using var context = new UniversityDatabase();
-            using var transaction = context.Database.BeginTransaction();
 
-            try
+            var provider = context.Providers.FirstOrDefault(rec => rec.Id == model.Id);
+            if (provider == null)
             {
-                var provider = context.Providers.FirstOrDefault(rec => rec.Id == model.Id);
-                if (provider == null)
-                {
-                    throw new Exception("Статус не найден");
-                }
-
-                CreateModel(model, provider);
-                context.SaveChanges();
-                transaction.Commit();
+                throw new Exception("Поставщик не найден");
             }
-            catch
-            {
-                transaction.Rollback();
-                throw;
-            }            
+
+            CreateModel(model, provider);
+            context.SaveChanges();
         }
 
         public void Delete(ProviderBindingModel model)
@@ -111,13 +81,12 @@ namespace UniversityDatabaseImplement.Implements
             }
             else
             {
-                throw new Exception("Статус не найден");
+                throw new Exception("Поставщик не найден");
             }
         }
 
         private static Provider CreateModel(ProviderBindingModel model, Provider provider)
         {
-            provider.Login = model.Login;
             provider.Password = model.Password;
             provider.FullName = model.FullName;
             provider.Email = model.Email;
@@ -130,7 +99,6 @@ namespace UniversityDatabaseImplement.Implements
             return new ProviderViewModel
             {
                 Id = provider.Id,
-                Login = provider.Login,
                 Password = provider.Password,
                 FullName = provider.FullName,
                 Email = provider.Email,

@@ -2,6 +2,7 @@
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
 using UniversityDatabaseImplement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace UniversityDatabaseImplement.Implements
 {
@@ -12,10 +13,13 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.EducationalStatuses
-            .Select(CreateModel)
-            .ToList();
+                .Include(rec => rec.ProviderId)
+                .Select(CreateModel)
+                .ToList();
         }
 
+        // получение отчета по записям статуса обучения студентов
+        // на указанном потоке за определенный период 
         public List<EducationalStatusViewModel> GetFilteredList(EducationalStatusBindingModel model)
         {
             if (model == null)
@@ -25,10 +29,17 @@ namespace UniversityDatabaseImplement.Implements
 
             using var context = new UniversityDatabase();
 
+
             return context.EducationalStatuses
-            .Where(rec => rec.Id == model.Id)
-            .Select(CreateModel)
-            .ToList();
+                .Include(rec => rec.Student)
+                .Include(rec => rec.ProviderId)
+                // сначала проверяем провайдера потом идем дальше
+                // идем дальше: если есть ограничения по дате справа и слева сверяемся с ними
+                // потом надо как-то выбирать те записи у которых студенты на указанном потоке
+                .Where(rec => (rec.ProviderId == model.ProviderId 
+                        && (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateOfChange.Date >= model.DateFrom.Value.Date && rec.DateOfChange.Date <= model.DateTo.Value.Date)))
+                .Select(CreateModel)
+                .ToList();
         }
 
         public EducationalStatusViewModel GetElement(EducationalStatusBindingModel model)
@@ -41,7 +52,8 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             var status = context.EducationalStatuses
-            .FirstOrDefault(rec => rec.Id == model.Id);
+                .Include(rec => rec.ProviderId)
+                .FirstOrDefault(rec => rec.Id == model.Id);
 
             return status != null ? CreateModel(status) : null;
         }
@@ -91,7 +103,7 @@ namespace UniversityDatabaseImplement.Implements
             status.FStatus = model.FStatus;
             status.DateOfChange = model.DateOfChange;
             status.StudentId = model.StudentId;
-            status.ProviderId = (int)model.ProviderId;
+            status.ProviderId = model.ProviderId;
             return status;
         }
 
@@ -104,6 +116,7 @@ namespace UniversityDatabaseImplement.Implements
                 FStatus = status.FStatus,
                 DateOfChange = status.DateOfChange,
                 StudentId = status.StudentId,
+                ProviderId = status.ProviderId
             };
         }
     }

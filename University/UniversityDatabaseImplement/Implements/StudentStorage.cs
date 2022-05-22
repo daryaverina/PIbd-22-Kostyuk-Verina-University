@@ -13,11 +13,10 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Students
-            .Include(rec => rec.DecreeStudents)
-            .ThenInclude(rec => rec.Decree)
-            .ToList()
-            .Select(CreateModel)
-            .ToList();
+                .Include(rec => rec.ProviderId)
+                .ToList()
+                .Select(CreateModel)
+                .ToList();
         }
 
         public List<StudentViewModel> GetFilteredList(StudentBindingModel model)
@@ -30,12 +29,16 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Students
-            .Include(rec => rec.DecreeStudents)
-            .ThenInclude(rec => rec.Decree)
-            .Where(rec => rec.FullName.Contains(model.FullName))
-            .ToList()
-            .Select(CreateModel)
-            .ToList();
+                .Include(rec => rec.ProviderId)
+                .Include(rec => rec.DecreeStudents)
+                .ThenInclude(rec => rec.Decree)
+                .Include(rec => rec.StudentFlows)
+                .ThenInclude(rec => rec.Flow)
+                    // нужны студенты с опр. потока 
+                // .Where(rec => rec.StudentFlows ..... )
+                .ToList()
+                .Select(CreateModel)
+                .ToList();
         }
 
         public StudentViewModel GetElement(StudentBindingModel model)
@@ -48,10 +51,13 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             var student = context.Students
-            .Include(rec => rec.DecreeStudents)
-            .ThenInclude(rec => rec.Decree)
-            .ToList()
-            .FirstOrDefault(rec => rec.FullName == model.FullName || rec.Id == model.Id);
+                .Include(rec => rec.ProviderId)
+                .Include(rec => rec.DecreeStudents)
+                .ThenInclude(rec => rec.Decree)
+                .Include(rec => rec.StudentFlows)
+                .ThenInclude(rec => rec.Flow)
+                .ToList()
+                .FirstOrDefault(rec => rec.FullName == model.FullName || rec.Id == model.Id);
             
             return student != null ? CreateModel(student) : null;
         }
@@ -81,7 +87,7 @@ namespace UniversityDatabaseImplement.Implements
 
             try
             {
-                var student = context.Students.FirstOrDefault(rec => rec.Id == model.Id);
+                var student = context.Students.Include(rec => rec.ProviderId).FirstOrDefault(rec => rec.Id == model.Id);
                 if (student == null)
                 {
                     throw new Exception("Студент(ка) не найден(а)");
@@ -119,14 +125,16 @@ namespace UniversityDatabaseImplement.Implements
         {
             student.FullName = model.FullName;
             student.PhoneNumber = model.PhoneNumber;
-            student.ProviderId = (int)model.ProviderId;
+            student.ProviderId = model.ProviderId;
 
             if (model.Id.HasValue)
             {
                 var decreeStudents = context.DecreeStudents.Where(rec => rec.StudentId == model.Id.Value).ToList();
+                var flowStudents = context.FlowStudents.Where(rec => rec.StudentId == model.Id.Value).ToList();
 
                 // Удалили те, которых нет в модели
                 context.DecreeStudents.RemoveRange(decreeStudents.Where(rec => !model.DecreeStudents.ContainsKey(rec.DecreeId)).ToList());
+                context.FlowStudents.RemoveRange(flowStudents.Where(rec => !model.StudentFlows.ContainsKey(rec.FlowId)).ToList());
                 context.SaveChanges();
             }
 
@@ -141,6 +149,16 @@ namespace UniversityDatabaseImplement.Implements
                 context.SaveChanges();
             }
 
+            foreach (var sf in model.StudentFlows)
+            {
+                context.FlowStudents.Add(new FlowStudent
+                {
+                    StudentId = student.Id,
+                    FlowId = sf.Key,
+                });
+                context.SaveChanges();
+            }
+
             return student;
         }
 
@@ -151,7 +169,9 @@ namespace UniversityDatabaseImplement.Implements
                 Id = student.Id,
                 FullName = student.FullName,
                 PhoneNumber = student.PhoneNumber,
-                DecreeStudents = student.DecreeStudents.ToDictionary(recDS => recDS.DecreeId, recDS => recDS.Decree?.DecreeNumber)
+                DecreeStudents = student.DecreeStudents.ToDictionary(recDS => recDS.DecreeId, recDS => recDS.Decree?.DecreeNumber),
+                StudentFlows = student.StudentFlows.ToDictionary(recDS => recDS.FlowId, recDS => recDS.Flow?.Faculty),
+                ProviderId = student.ProviderId
             };
         }
     }

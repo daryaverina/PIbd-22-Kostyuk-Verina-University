@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using UniversityContracts.Attributes;
 
 namespace UniversityContracts.ViewModels
 {
@@ -7,20 +7,16 @@ namespace UniversityContracts.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("Логин")]
-        public string Login { get; set; }
-
-        // ПОПРАВИТЬ: нужно ли выводить пароли?
-        [DisplayName("Пароль")]
-        public string Password { get; set; }
-
-        [DisplayName("ФИО")]
+        [Column(title: "ФИО", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string FullName { get; set; }
 
-        [DisplayName("Электронная почта")]
+        [Column(title: "Электронная почта", width: 200)]
         public string Email { get; set; }
 
-        [DisplayName("Номер телефона")]
+        [Column(title: "Пароль", width: 150)]
+        public string Password { get; set; }
+
+        [Column(title: "Номер телефона", width: 150)]
         public string PhoneNumber { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using UniversityContracts.Enums;
-using System.ComponentModel;
+using UniversityContracts.Attributes;
 
 namespace UniversityContracts.ViewModels
 {
@@ -8,16 +8,18 @@ namespace UniversityContracts.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("Номер зачетки студента")]
+        [Column(title: "Номер зачетки студента", width: 70)]
         public int StudentId { get; set; }
 
-        [DisplayName("Основа обучения")]
+        [Column(title: "Основа обучения", gridViewAutoSize: GridViewAutoSize.Fill)]
         public BaseStatus BStatus { get; set; }
 
-        [DisplayName("Форма обучения")]
+        [Column(title: "Форма обучения", gridViewAutoSize: GridViewAutoSize.Fill)]
         public FormStatus FStatus { get; set; }
 
-        [DisplayName("Дата изменения статуса")]
+        [Column(title: "Дата изменения статуса", width: 200)]
         public DateTime DateOfChange { get; set; }
+
+        public int ProviderId { get; set; }
     }
 }

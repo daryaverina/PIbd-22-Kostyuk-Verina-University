@@ -7,5 +7,8 @@
         public int NumberOfCourse { get; set; }
         public int? CustomerID { get; set; }
         public Dictionary<int, string> SubjectFlows { get; set; }
+
+        // поток-студент многие ко многим
+        public Dictionary<int, string> StudentFlows { get; set; }
     }
 }

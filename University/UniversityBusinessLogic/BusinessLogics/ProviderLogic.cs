@@ -31,11 +31,11 @@ namespace UniversityBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(ProviderBindingModel model)
         {
-            var element = _providerStorage.GetElement(new ProviderBindingModel { Login = model.Login });
+            var element = _providerStorage.GetElement(new ProviderBindingModel { Email = model.Email });
 
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть поставщик с таким логином");
+                throw new Exception("Уже есть поставщик с такой почтой");
             }
 
             if (model.Id.HasValue)

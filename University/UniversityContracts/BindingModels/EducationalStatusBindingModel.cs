@@ -10,6 +10,6 @@ namespace UniversityContracts.BindingModels
         public FormStatus FStatus { get; set; }
         public DateTime DateOfChange { get; set; }
         public int StudentId { get; set; }
-        public int? ProviderId { get; set; }
+        public int ProviderId { get; set; }
     }
 }
