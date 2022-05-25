@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="OfficePackage\HelperEnums\" />
-    <Folder Include="OfficePackage\HelperModels\" />
+    <Folder Include="OfficePackage\Implements\" />
   </ItemGroup>
 
   <ItemGroup>

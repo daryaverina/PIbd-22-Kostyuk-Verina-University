@@ -1,0 +1,28 @@
+﻿<Window x:Class="UniversityView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniversityView"
+        mc:Ignorable="d"
+        Title="Главное окно" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" VerticalAlignment="Top" FontSize="16">
+            <MenuItem Name="miMedicine" Header="Лекарства"/>
+            <MenuItem Name="miReceipt" Header="Поступления" />
+            <MenuItem Name="miPrescription" Header="Рецепты" />
+            <MenuItem Name="miGetList" Header="Получение списка" />
+            <MenuItem Name="miGetReport" Header="Отчет" />
+            <MenuItem Name="miGetGraph" Header="График"/>
+            <Separator />
+        </Menu>
+
+        <Image Grid.Row="1" Source="resources\logo.png"/>
+    </Grid>
+
+</Window>
