@@ -36,8 +36,8 @@ namespace UniversityDatabaseImplement.Implements
                 // сначала проверяем провайдера потом идем дальше
                 // идем дальше: если есть ограничения по дате справа и слева сверяемся с ними
                 // потом надо как-то выбирать те записи у которых студенты на указанном потоке
-                .Where(rec => (rec.ProviderId == model.ProviderId 
-                        && (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateOfChange.Date >= model.DateFrom.Value.Date && rec.DateOfChange.Date <= model.DateTo.Value.Date)))
+                .Where(rec => (rec.ProviderId == model.ProviderId ))
+                 //       && (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateOfChange.Date >= model.DateFrom.Value.Date && rec.DateOfChange.Date <= model.DateTo.Value.Date)))
                 .Select(CreateModel)
                 .ToList();
         }

@@ -61,10 +61,12 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Subjects
-                .Include(rec => rec.SubjectFlows)
-                .ThenInclude(rec => rec.Flow)
-                .ToList()
-               .Select(CreateModel)
+                .Select(rec => new SubjectViewModel
+                {
+                    Id = rec.Id,
+                    SubjectName = rec.SubjectName,
+                    HoursAmount = rec.HoursAmount
+                })
                 .ToList();
 
         }

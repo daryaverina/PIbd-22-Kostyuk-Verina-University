@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityContracts", "Univ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityDatabaseImplement", "UniversityDatabaseImplement\UniversityDatabaseImplement.csproj", "{1E7327A4-A0C3-46D0-B00A-DB594B7594D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityView", "UniversityView\UniversityView.csproj", "{C172140C-1E5D-44D1-AD56-E0285FD80DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityView", "UniversityView\UniversityView.csproj", "{C172140C-1E5D-44D1-AD56-E0285FD80DD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
