@@ -3,6 +3,7 @@
     public class FlowBindingModel
     {
         public int? Id { get; set; }
+        public string Flow_name { get; set; }
         public string Faculty { get; set; }
         public int NumberOfCourse { get; set; }
         public int? CustomerID { get; set; }

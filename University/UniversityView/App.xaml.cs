@@ -51,11 +51,13 @@ namespace UniversityView
             currentContainer.RegisterType<ICustomerStorage, CustomerStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ISubjectStorage, SubjectStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IGroupStorage, GroupStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IFlowStorage, FlowStorage>(new HierarchicalLifetimeManager());
 
 
             currentContainer.RegisterType<ICustomerLogic, CustomerLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ISubjectLogic, SubjectLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IGroupLogic, GroupLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IFlowLogic, FlowLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

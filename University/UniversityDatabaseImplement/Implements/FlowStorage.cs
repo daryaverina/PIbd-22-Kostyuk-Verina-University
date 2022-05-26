@@ -75,6 +75,7 @@ namespace UniversityDatabaseImplement.Implements
             {
                 Flow flow = new Flow()
                 {
+                    Flow_name=model.Flow_name,
                     Faculty = model.Faculty,
                     NumberOfCourse = model.NumberOfCourse,
                     CustomerID = (int)model.CustomerID
@@ -115,6 +116,7 @@ namespace UniversityDatabaseImplement.Implements
         }
         private static Flow CreateModel(FlowBindingModel model, Flow flow)
         {
+            flow.Flow_name = model.Flow_name;
             flow.Faculty = model.Faculty;
             flow.NumberOfCourse = (int)model.NumberOfCourse;
             flow.CustomerID = (int)model.CustomerID;
@@ -127,8 +129,8 @@ namespace UniversityDatabaseImplement.Implements
             return new FlowViewModel
             {
                 Id = flow.Id,
+                Flow_name=flow.Flow_name,
                 Faculty = flow.Faculty,
-                Speciality = flow.Group.Speciality,
                 NumberOfCourse = flow.NumberOfCourse
 
             };

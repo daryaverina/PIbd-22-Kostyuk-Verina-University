@@ -17,7 +17,7 @@ namespace UniversityDatabaseImplement.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -65,6 +65,10 @@ namespace UniversityDatabaseImplement.Migrations
 
                     b.Property<DateTime>("DateOfCreation")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DecreeNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProviderId")
                         .HasColumnType("int");
@@ -169,6 +173,10 @@ namespace UniversityDatabaseImplement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Flow_name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("NumberOfCourse")
                         .HasColumnType("int");
 
@@ -219,6 +227,9 @@ namespace UniversityDatabaseImplement.Migrations
                     b.Property<int?>("FlowId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FlowId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("SemestersAmount")
                         .HasColumnType("int");
 
@@ -231,6 +242,10 @@ namespace UniversityDatabaseImplement.Migrations
                     b.HasIndex("CustomerID");
 
                     b.HasIndex("FlowId");
+
+                    b.HasIndex("FlowId1")
+                        .IsUnique()
+                        .HasFilter("[FlowId1] IS NOT NULL");
 
                     b.ToTable("Groups");
                 });
@@ -248,10 +263,6 @@ namespace UniversityDatabaseImplement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -351,7 +362,7 @@ namespace UniversityDatabaseImplement.Migrations
                     b.HasOne("UniversityDatabaseImplement.Models.Provider", "Provider")
                         .WithMany("Decrees")
                         .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Provider");
@@ -456,6 +467,10 @@ namespace UniversityDatabaseImplement.Migrations
                         .WithMany("Groups")
                         .HasForeignKey("FlowId");
 
+                    b.HasOne("UniversityDatabaseImplement.Models.Flow", null)
+                        .WithOne("Group")
+                        .HasForeignKey("UniversityDatabaseImplement.Models.Group", "FlowId1");
+
                     b.Navigation("Customer");
                 });
 
@@ -484,15 +499,15 @@ namespace UniversityDatabaseImplement.Migrations
             modelBuilder.Entity("UniversityDatabaseImplement.Models.SubjectFlow", b =>
                 {
                     b.HasOne("UniversityDatabaseImplement.Models.Flow", "Flow")
-                        .WithMany("SubjectFlows")
+                        .WithMany("FlowSubjects")
                         .HasForeignKey("FlowId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("UniversityDatabaseImplement.Models.Subject", "Subject")
                         .WithMany("SubjectFlows")
                         .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Flow");
@@ -520,9 +535,12 @@ namespace UniversityDatabaseImplement.Migrations
                 {
                     b.Navigation("FlowStudents");
 
-                    b.Navigation("Groups");
+                    b.Navigation("FlowSubjects");
 
-                    b.Navigation("SubjectFlows");
+                    b.Navigation("Group")
+                        .IsRequired();
+
+                    b.Navigation("Groups");
                 });
 
             modelBuilder.Entity("UniversityDatabaseImplement.Models.Group", b =>

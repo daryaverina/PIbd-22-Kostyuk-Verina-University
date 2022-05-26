@@ -7,6 +7,8 @@ namespace UniversityDatabaseImplement.Models
     public class Flow
     {
         public int Id { get; set; }
+        [Required]
+        public string Flow_name { get; set; }
 
         [Required]
         public string Faculty { get; set; }

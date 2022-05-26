@@ -49,7 +49,7 @@ namespace UniversityView
                 {
                     Id = id,
                     SubjectName = TextBoxName.Text,
-                    HoursAmount = 999,
+                    HoursAmount = Convert.ToInt32(TextBoxHours.Text),
                     CustomerID = (int)App.Customer.Id,
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -80,5 +80,6 @@ namespace UniversityView
                 TextBoxName.Text = lunch.SubjectName;
             }
         }
+        
     }
 }

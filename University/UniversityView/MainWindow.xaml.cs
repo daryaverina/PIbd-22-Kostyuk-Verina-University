@@ -42,6 +42,12 @@ namespace UniversityView
             form.ShowDialog();
         }
 
+        private void MenuItemFlows_Click(object sender, RoutedEventArgs e)
+        {
+            var form = App.Container.Resolve<FlowsWindow>();
+            form.ShowDialog();
+        }
+
         private void MenuItemGroups_Click(object sender, RoutedEventArgs e)
         {
             var form = App.Container.Resolve<GroupsWindow>();

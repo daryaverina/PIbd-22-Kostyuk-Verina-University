@@ -5,6 +5,8 @@ namespace UniversityContracts.ViewModels
     public class FlowViewModel
     {
         public int Id { get; set; }
+        [DisplayName("Поток")]
+        public string Flow_name { get; set; }
 
         [DisplayName("Факультет")]
         public string Faculty { get; set; }

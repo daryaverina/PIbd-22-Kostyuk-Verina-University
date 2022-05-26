@@ -13,8 +13,8 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" VerticalAlignment="Top" FontSize="16">
-            <MenuItem Name="miMedicine" Header="Группы" Click="MenuItemGroups_Click" />
-            <MenuItem Name="miReceipt" Header="Потоки"/>
+            <MenuItem Name="miMedicine" Header="Группы" Click ="MenuItemGroups_Click" />
+            <MenuItem Name="miReceipt" Header="Потоки" Click ="MenuItemFlows_Click"/>
             <MenuItem Name="miPrescription" Header="Дисциплины" Click="MenuItemSubjects_Click" />
             <MenuItem Name="miGetList" Header="Получение списка" />
             <MenuItem Name="miGetReport" Header="Отчет" />

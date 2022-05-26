@@ -33,7 +33,7 @@ namespace UniversityBusinessLogic.BusinessLogics
         {
             var element = _flowStorage.GetElement(new FlowBindingModel
             {
-                Faculty = model.Faculty
+                Flow_name = model.Flow_name
             });
             if (element != null && element.Id != model.Id)
             {

@@ -7,17 +7,18 @@
         mc:Ignorable="d"
          Title="Дисциплины" Height="460" Width="840" Loaded="SubjectsWindow_Load" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="DataGridSubjects" HorizontalAlignment="Left" VerticalAlignment="Top" Height="420" Width="700" Style="{StaticResource datagrid}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Название" Binding="{Binding Path=SubjectName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Количество часов" Binding="{Binding Path=HoursAmount}" Width="0.5*"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <!--AutoGenerateColumns="False" CanUserAddRows="false" CanUserReorderColumns="False"-->
-        <Button x:Name="ButtonAdd" Content="Создать" HorizontalAlignment="Left" Margin="710,40,0,0" VerticalAlignment="Top" Width="100" Click="ButtonCreate_Click"/>
-        <Button x:Name="ButtonUpdate" Content="Изменить" HorizontalAlignment="Left" Margin="710,100,0,0" VerticalAlignment="Top" Width="100" Click="ButtonUpdate_Click"/>
-        <Button x:Name="ButtonDelete" Content="Удалить" HorizontalAlignment="Left" Margin="710,160,0,0" VerticalAlignment="Top" Width="100" Click="ButtonDelete_Click"/>
-        <Button x:Name="ButtonRefresh" Content="Обновить" HorizontalAlignment="Left" Margin="710,220,0,0" VerticalAlignment="Top" Width="100" Click="ButtonRefresh_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="DataGridView" Grid.Row="0" Margin="5" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
+        <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="Add_Click"/>
+        <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Click="Delete_Click"/>
+        <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Click="Change_Click"/>
+        <Button Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" Click="Cancel_Click" />
     </Grid>
 </Window>
