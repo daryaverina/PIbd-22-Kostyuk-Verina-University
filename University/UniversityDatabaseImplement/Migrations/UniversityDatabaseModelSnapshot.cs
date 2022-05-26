@@ -362,7 +362,7 @@ namespace UniversityDatabaseImplement.Migrations
                     b.HasOne("UniversityDatabaseImplement.Models.Provider", "Provider")
                         .WithMany("Decrees")
                         .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Provider");
@@ -501,13 +501,13 @@ namespace UniversityDatabaseImplement.Migrations
                     b.HasOne("UniversityDatabaseImplement.Models.Flow", "Flow")
                         .WithMany("FlowSubjects")
                         .HasForeignKey("FlowId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("UniversityDatabaseImplement.Models.Subject", "Subject")
                         .WithMany("SubjectFlows")
                         .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Flow");

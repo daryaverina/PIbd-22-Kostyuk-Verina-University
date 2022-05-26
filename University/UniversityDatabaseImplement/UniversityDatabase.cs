@@ -14,7 +14,7 @@ namespace UniversityDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-CM2EFFR\SQLEXPRESS;Initial Catalog=UniversityDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-CM2EFFR\SQLEXPRESS;Initial Catalog=UniversityDatabase;Integrated Security=True;Encrypt=False;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
