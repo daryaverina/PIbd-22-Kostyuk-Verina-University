@@ -49,9 +49,13 @@ namespace UniversityView
         {
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<ICustomerStorage, CustomerStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ISubjectStorage, SubjectStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IGroupStorage, GroupStorage>(new HierarchicalLifetimeManager());
 
 
             currentContainer.RegisterType<ICustomerLogic, CustomerLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ISubjectLogic, SubjectLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IGroupLogic, GroupLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

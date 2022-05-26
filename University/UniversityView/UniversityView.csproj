@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="resources\Logo.jpg" />
+    <None Remove="resources\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,6 +23,10 @@
   <ItemGroup>
     <ProjectReference Include="..\UniversityBusinessLogic\UniversityBusinessLogic.csproj" />
     <ProjectReference Include="..\UniversityDatabaseImplement\UniversityDatabaseImplement.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\Logo.jpg" />
   </ItemGroup>
 
 </Project>

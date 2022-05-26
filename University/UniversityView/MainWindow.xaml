@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniversityView"
         mc:Ignorable="d"
-        Title="Главное окно" Height="450" Width="600">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -13,16 +13,15 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" VerticalAlignment="Top" FontSize="16">
-            <MenuItem Name="miMedicine" Header="Лекарства"/>
-            <MenuItem Name="miReceipt" Header="Поступления" />
-            <MenuItem Name="miPrescription" Header="Рецепты" />
+            <MenuItem Name="miMedicine" Header="Группы" Click="MenuItemGroups_Click" />
+            <MenuItem Name="miReceipt" Header="Потоки"/>
+            <MenuItem Name="miPrescription" Header="Дисциплины" Click="MenuItemSubjects_Click" />
             <MenuItem Name="miGetList" Header="Получение списка" />
             <MenuItem Name="miGetReport" Header="Отчет" />
-            <MenuItem Name="miGetGraph" Header="График"/>
+            <MenuItem Name="miGetGraph" Header="График" />
             <Separator />
         </Menu>
 
-        <Image Grid.Row="1" Source="resources\logo.png"/>
+        <Image Grid.Row="1" Source="resources\Logo.jpg"/>
     </Grid>
-
 </Window>

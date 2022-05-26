@@ -8,7 +8,7 @@ using UniversityContracts.BusinessLogicsContracts;
 using UniversityContracts.StorageContracts;
 using UniversityContracts.ViewModels;
 
-namespace BankBusinessLogic.BusinessLogics
+namespace UniversityBusinessLogic.BusinessLogics
 {
     public class GroupLogic : IGroupLogic
     {

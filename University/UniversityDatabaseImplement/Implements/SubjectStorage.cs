@@ -55,16 +55,18 @@ namespace UniversityDatabaseImplement.Implements
             .ToList();
         }
 
-        public List<SubjectViewModel> GetFullList()
+
+        public List<SubjectViewModel> GetFullList()//
         {
             using var context = new UniversityDatabase();
+
             return context.Subjects
-           .Include(rec => rec.SubjectFlows)
-            .ThenInclude(rec => rec.Flow)
-            .Include(rec => rec.Customer)
-            .ToList()
-            .Select(CreateModel)
-            .ToList();
+                .Include(rec => rec.SubjectFlows)
+                .ThenInclude(rec => rec.Flow)
+                .ToList()
+               .Select(CreateModel)
+                .ToList();
+
         }
 
         public void Insert(SubjectBindingModel model)
@@ -123,15 +125,7 @@ namespace UniversityDatabaseImplement.Implements
             }
 
             // Добавили новые
-            foreach (var dg in model.SubjectFlows)
-            {
-                context.SubjectFlows.Add(new SubjectFlow
-                {
-                    Id = subject.Id,
-                    FlowId = dg.Key,
-                });
-                context.SaveChanges();
-            }
+            
 
             return subject;
         }

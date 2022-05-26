@@ -12,7 +12,14 @@ namespace UniversityDatabaseImplement.Implements
         {
             using var context = new UniversityDatabase();
             return context.Customers
-                .Select(CreateModel)
+                .Select(rec => new CustomerViewModel
+                {
+                    Id = rec.Id,
+                    Name = rec.Name,
+                    Phone = rec.Phone,
+                    Login = rec.Login,
+                    Password = rec.Password
+                })
                 .ToList();
         }
         public List<CustomerViewModel> GetFilteredList(CustomerBindingModel model)

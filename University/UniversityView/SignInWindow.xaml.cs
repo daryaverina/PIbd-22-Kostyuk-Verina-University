@@ -52,6 +52,7 @@ namespace UniversityView
 
             foreach (var hw in customers)
             {
+                //MessageBox.Show(hw.Login);
                 if (hw.Login == TextBoxLogin.Text && hw.Password == TextBoxPassword.Text)
                 {
                     _customer = hw;
