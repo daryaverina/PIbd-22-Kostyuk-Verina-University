@@ -15,7 +15,7 @@ namespace UniversityBusinessLogic.BusinessLogics
     // получение списка дисциплин, посещаемых выбранными студентами, в формате doc/xls;
     // получение отчета по записям статуса обучения студентов на указанном потоке за определенный период в формате pdf на почту или его вывод на форме.
 
-    public class ProviderReportLogic : IProviderLogic
+    public class ProviderReportLogic : IProviderReportLogic
     {
         private readonly ISubjectStorage _subjectStorage;
         private readonly IStudentStorage _studentStorage;
@@ -71,10 +71,10 @@ namespace UniversityBusinessLogic.BusinessLogics
         }
 
         // получение отчета по записям статуса обучения студентов на указанном потоке за определенный период
-        public List<ReportStatusesViewModel> GetStatuses(ReportBindingModel model, int customerID)//
-        {
+        //public List<ReportStatusesViewModel> GetStatuses(ReportBindingModel model, int customerID)//
+        //{
             
-        }
+        //}
 
         // Сохранение дисциплин с указанием студентов в файл-Word
         public void SaveSubjectsToWordFile(ProviderReportBindingModel model)//

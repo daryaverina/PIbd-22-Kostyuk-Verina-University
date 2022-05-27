@@ -12,7 +12,7 @@ namespace UniversityContracts.BusinessLogicsContracts
         List<ReportSubjectStudentViewModel> GetSubjectStudent(List<StudentViewModel> students);
 
         // Получение списка статусов обучения с указанием потоков
-        List<ReportStatusesViewModel> GetStatuses(ReportBindingModel model, int customerID);
+        // List<ReportStatusesViewModel> GetStatuses(ReportBindingModel model, int customerID);
 
         // Сохранение дисциплин с указанием студентов в файл-Word
         void SaveSubjectsToWordFile(ProviderReportBindingModel model);
@@ -21,6 +21,6 @@ namespace UniversityContracts.BusinessLogicsContracts
         void SaveSubjectsToExcelFile(ProviderReportBindingModel model);
 
         // Сохранение статусов обучения с указанием потоков в файл-Pdf
-        void SaveStatusesToPdfFile(ReportBindingModel model, int customerID);
+       // void SaveStatusesToPdfFile(ReportBindingModel model, int customerID);
     }
 }
