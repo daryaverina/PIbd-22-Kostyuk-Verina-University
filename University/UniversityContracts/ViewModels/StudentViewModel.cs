@@ -20,5 +20,7 @@ namespace UniversityContracts.ViewModels
         public Dictionary<int, string> DecreeStudents { get; set; }
         // поток-студент многие ко многим
         public Dictionary<int, string> StudentFlows { get; set; }
+        // статус-студент один ко многим 
+        public Dictionary<int, string> EducationalStatuses { get; set; }
     }
 }
