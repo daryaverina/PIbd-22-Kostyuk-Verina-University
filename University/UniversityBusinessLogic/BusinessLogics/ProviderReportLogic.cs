@@ -70,7 +70,6 @@ namespace UniversityBusinessLogic.BusinessLogics
             return list;
         }
 
-        // Получение списка обедов с указанием семинара и номера за определенный период
         // получение отчета по записям статуса обучения студентов на указанном потоке за определенный период
         public List<ReportStatusesViewModel> GetStatuses(ReportBindingModel model, int customerID)//
         {
@@ -88,7 +87,6 @@ namespace UniversityBusinessLogic.BusinessLogics
             });
         }
 
-        // Сохранение семинаров по номерам в файл-Excel
         // Сохранение дисциплин с указанием студентов в файл-Excel
         public void SaveSubjectsToExcelFile(ProviderReportBindingModel model)//
         {
@@ -100,7 +98,6 @@ namespace UniversityBusinessLogic.BusinessLogics
             });
         }
 
-        // Сохранение  обедов с указанием семинара и номера заказов в файл-Pdf
         // Сохранение статусов обучения с указанием потоков в файл-Pdf
         public void SaveStatusesToPdfFile(ReportBindingModel model, int customerID)//
         {
