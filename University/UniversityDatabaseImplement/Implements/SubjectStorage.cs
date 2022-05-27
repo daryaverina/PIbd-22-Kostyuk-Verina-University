@@ -25,16 +25,18 @@ namespace UniversityDatabaseImplement.Implements
 
         public SubjectViewModel GetElement(SubjectBindingModel model)
         {
+
+
             if (model == null)
             {
                 return null;
             }
             using var context = new UniversityDatabase();
+
             var order = context.Subjects
-            .Include(rec => rec.SubjectFlows)
-            .ThenInclude(rec => rec.Flow)
-            .Include(rec => rec.Customer)
-            .FirstOrDefault(rec => rec.Id == model.Id);
+              .Include(rec => rec.SubjectFlows)
+              .ThenInclude(rec => rec.Flow)
+              .FirstOrDefault(rec => rec.Id == model.Id || rec.SubjectName == model.SubjectName);
             return order != null ? CreateModel(order) : null;
         }
 
@@ -48,8 +50,7 @@ namespace UniversityDatabaseImplement.Implements
             return context.Subjects
            .Include(rec => rec.SubjectFlows)
             .ThenInclude(rec => rec.Flow)
-            .Include(rec => rec.Customer)
-            .Where(rec => rec.SubjectName == model.SubjectName)
+            .Where(rec => (rec.CustomerID == model.CustomerID))
             .ToList()
             .Select(CreateModel)
             .ToList();

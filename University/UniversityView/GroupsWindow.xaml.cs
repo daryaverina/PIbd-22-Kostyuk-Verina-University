@@ -28,7 +28,10 @@ namespace UniversityView
         {
             try
             {
-                var list = _logic.Read(null);
+                var list = _logic.Read(new GroupBindingModel
+                {
+                    CustomerID = (int)App.Customer.Id
+                });
                 if (list != null)
                 {
                     DataGridView.ItemsSource = list;

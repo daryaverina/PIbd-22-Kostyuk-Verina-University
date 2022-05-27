@@ -50,7 +50,7 @@ namespace UniversityDatabaseImplement.Implements
             return context.Flows
             .Include(rec => rec.FlowSubjects)
             .ThenInclude(rec => rec.Subject)
-            .Where(rec => rec.Faculty.Contains(model.Faculty))
+            .Where(rec => (rec.CustomerID == model.CustomerID))
             .ToList()
             .Select(CreateModel)
             .ToList();
@@ -131,8 +131,8 @@ namespace UniversityDatabaseImplement.Implements
                 Id = flow.Id,
                 Flow_name=flow.Flow_name,
                 Faculty = flow.Faculty,
-                NumberOfCourse = flow.NumberOfCourse
-
+                NumberOfCourse = flow.NumberOfCourse,
+                CustomerID = flow.CustomerID,
             };
         }
     }

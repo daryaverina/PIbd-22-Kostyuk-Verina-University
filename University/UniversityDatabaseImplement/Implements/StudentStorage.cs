@@ -13,7 +13,10 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Students
-                .Include(rec => rec.ProviderId)
+               .Include(rec => rec.DecreeStudents)
+                .ThenInclude(rec => rec.Decree)
+                .Include(rec => rec.StudentFlows)
+                .ThenInclude(rec => rec.Flow)
                 .ToList()
                 .Select(CreateModel)
                 .ToList();
@@ -29,7 +32,6 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Students
-                .Include(rec => rec.ProviderId)
                 .Include(rec => rec.DecreeStudents)
                 .ThenInclude(rec => rec.Decree)
                 .Include(rec => rec.StudentFlows)

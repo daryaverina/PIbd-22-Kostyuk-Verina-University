@@ -37,7 +37,11 @@ namespace UniversityView
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<FlowViewModel> list = _flowLogic.Read(null);
+
+            List<FlowViewModel> list = _flowLogic.Read(new FlowBindingModel
+            {
+                CustomerID = (int)App.Customer.Id
+            });
             if (list != null)
             {
 
@@ -46,52 +50,48 @@ namespace UniversityView
                 ComboBoxFlow.ItemsSource = list;
                 ComboBoxFlow.SelectedItem = null;
             }
-            /*ComboBoxFlow.ItemsSource = _flowLogic.Read(new FlowBindingModel
-            {
-                CustomerID = (int)App.Customer.Id
-            });*/
-            //ComboBoxFlow.SelectedItem = null;
 
-            var liststudents = _studentLogic.Read(new StudentBindingModel
+            var liststudents = _studentLogic.Read(null);
+
+            foreach (var stu in liststudents)
             {
-                ProviderId = 1
-            }); 
-          //  var liststudents = _studentLogic.Read(null);
-           // foreach (var stu in liststudents)
-          //  {
-            //    ListBoxStudents.Items.Add(stu);
-          //  }
+                ListBoxStudents.Items.Add(stu);
+            }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            /*try
+            try
             {
+                
                 Dictionary<int, string> studentFlow = new Dictionary<int, string>();
-                foreach (var flo in ListBoxFlow.SelectedItems)
+                foreach (var stu in ListBoxStudents.SelectedItems)
                 {
-                    var flow = (FlowViewModel)flo;
-                    studentFlow.Add(flow.Id, flow.Flow_name);
+                    var student= (StudentViewModel)stu;
+                    studentFlow.Add(student.Id, student.FullName);
                 }
 
-                StudentViewModel student = (StudentViewModel)ComboBoxStudent.SelectedItem;
-                _studentLogic.CreateOrUpdate(new StudentBindingModel
+
+                FlowViewModel flow = (FlowViewModel)ComboBoxFlow.SelectedItem;
+                _flowLogic.CreateOrUpdate(new FlowBindingModel
                 {
-                    Id = student.Id,
-                    FullName = student.FullName,
-                    PhoneNumber = student.PhoneNumber,
-                    ProviderId = student.ProviderId,
-                    DecreeStudents = studentFlow,
+                    Id = flow.Id,
+                    Flow_name = flow.Flow_name,
+                    Faculty = flow.Faculty,
+                    NumberOfCourse = flow.NumberOfCourse,
+                    CustomerID = (int)App.Customer.Id,
                     StudentFlows = studentFlow
                 });
                 MessageBox.Show("Привязка прошла успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
+
+  
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }*/
+            }
            
         }
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

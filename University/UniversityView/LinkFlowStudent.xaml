@@ -10,7 +10,7 @@
         <ComboBox x:Name="ComboBoxFlow" Grid.Row="3"  SelectedValuePath="Id" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="340" IsReadOnly="True"/>
         <Label Content="Поток:" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top"/>
 
-        <ListBox x:Name="ListBoxStudents" DisplayMemberPath="Full_name" SelectedValuePath="Id" SelectionMode="Multiple" HorizontalAlignment="Left" Height="240" Margin="20,70,0,0" VerticalAlignment="Top" Width="340"/>
+        <ListBox x:Name="ListBoxStudents" DisplayMemberPath="FullName" SelectedValuePath="Id" SelectionMode="Multiple" HorizontalAlignment="Left" Height="240" Margin="20,70,0,0" VerticalAlignment="Top" Width="340"/>
 
         <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="70,330,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
         <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="210,330,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
