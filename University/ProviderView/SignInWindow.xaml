@@ -12,12 +12,16 @@
             <ColumnDefinition Width="343*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Height="250" Margin="20,20,20,14" Grid.ColumnSpan="2">
-            <Label Content="Логин (почта):" Margin="0, 30, 0, 0"/>
-            <TextBox x:Name="TextBoxLogin" Height="25"/>
-            <Label Content="Пароль:"/>
-            <TextBox x:Name="TextBoxPassword" Height="25"/>
-            <Button Content="Войти" Margin="0, 20, 0, 0" Click="SignIn_Click"/>
-            <Button Content="Зарегистрироваться" Margin="0, 20, 0, 0" Click="ToSignUp_Click"/>
+            <Label FontFamily="Franklin Gothic" Content="Логин (почта):" Margin="0, 30, 0, 0"/>
+            <TextBox FontFamily="Franklin Gothic" x:Name="TextBoxLogin" Height="25"/>
+            <Label FontFamily="Franklin Gothic" Content="Пароль:"/>
+            <TextBox FontFamily="Franklin Gothic" x:Name="TextBoxPassword" Height="25"/>
+            <Button  FontFamily="Franklin Gothic " Content="Войти" Margin="0, 20, 0, 0" Click="SignIn_Click"/>
+            <Button FontFamily="Franklin Gothic " Content="Зарегистрироваться" Margin="0, 20, 0, 0" Click="ToSignUp_Click"/>
+
+            <Button  FontFamily="Franklin Gothic Demi" x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="25,208,0,0" VerticalAlignment="Top" Width="117" Click="ButtonSave_Click" RenderTransformOrigin="0.554,-7.933" Grid.Row="1" Height="30"/>
+            <Button  FontFamily="Franklin Gothic Demi" x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="155,208,0,0" VerticalAlignment="Top" Width="120" Click="ButtonCancel_Click" RenderTransformOrigin="0.496,-8.437" Grid.Row="1" Grid.ColumnSpan="2" Height="30"/>
+
         </StackPanel>
     </Grid>
 </Window>

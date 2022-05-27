@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityProviderApp", "Un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityDatabaseImplement", "UniversityDatabaseImplement\UniversityDatabaseImplement.csproj", "{EE686132-B3BA-47F1-8409-BAAC81651A33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityProviderRestApi", "UniversityProviderRestApi\UniversityProviderRestApi.csproj", "{D8545067-4161-41A6-82D8-092825F75D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityProviderRestApi", "UniversityProviderRestApi\UniversityProviderRestApi.csproj", "{D8545067-4161-41A6-82D8-092825F75D97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderView", "ProviderView\ProviderView.csproj", "{8FA7D03C-14C2-444B-8CBF-D07E7A42E670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D8545067-4161-41A6-82D8-092825F75D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8545067-4161-41A6-82D8-092825F75D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8545067-4161-41A6-82D8-092825F75D97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FA7D03C-14C2-444B-8CBF-D07E7A42E670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA7D03C-14C2-444B-8CBF-D07E7A42E670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA7D03C-14C2-444B-8CBF-D07E7A42E670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA7D03C-14C2-444B-8CBF-D07E7A42E670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

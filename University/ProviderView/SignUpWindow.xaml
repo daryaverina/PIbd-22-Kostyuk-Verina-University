@@ -8,15 +8,15 @@
         Title="Регистрация" Height="335" Width="420" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Margin="55,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="310" Width="300" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
-            <Label Content="Логин (почта)"  Margin="0,0,0,0" Height="35"/>
-            <TextBox x:Name="TextBoxLogin"/>
-            <Label Content="Пароль" />
-            <TextBox x:Name="TextBoxPassword"/>
-            <Label Content="ФИО"/>
-            <TextBox x:Name="TextBoxFullName"/>
-            <Label Content="Номер телефона" />
-            <TextBox x:Name="TextBoxPhone"/>
-            <Button Content="Зарегистрироваться" Margin="0,20,0,0" Click="SignUp_Click"/>
+            <Label FontFamily="Franklin Gothic" Content="Логин (почта)"  Margin="0,0,0,0" Height="35"/>
+            <TextBox FontFamily="Franklin Gothic" x:Name="TextBoxLogin"/>
+            <Label FontFamily="Franklin Gothic" Content="Пароль" />
+            <TextBox FontFamily="Franklin Gothic" x:Name="TextBoxPassword"/>
+            <Label FontFamily="Franklin Gothic" Content="ФИО"/>
+            <TextBox FontFamily="Franklin Gothic" x:Name="TextBoxFullName"/>
+            <Label FontFamily="Franklin Gothic" Content="Номер телефона" />
+            <TextBox FontFamily="Franklin Gothic" x:Name="TextBoxPhone"/>
+            <Button FontFamily="Franklin Gothic" Content="Зарегистрироваться" Margin="0,20,0,0" Click="SignUp_Click"/>
         </StackPanel>
     </Grid>
 </Window>

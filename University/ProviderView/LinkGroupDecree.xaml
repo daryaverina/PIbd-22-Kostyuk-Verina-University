@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProviderView"
         mc:Ignorable="d"
-        Title="Привязка приказов о зачислении к группе" Height="410" Width="400" Loaded="LinkGroupDecree_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Привязка приказов о зачислении к группе" Height="375" Width="330" Loaded="LinkGroupDecree_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Группа:" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ComboBoxGroup" Grid.Row="3"  SelectedValuePath="Id" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="340" IsReadOnly="True"/>
+        <Label FontFamily="Franklin Gothic" Content="Группа:" HorizontalAlignment="Left" Margin="20,8,0,0" VerticalAlignment="Top"/>
+        <ComboBox FontFamily="Franklin Gothic" x:Name="ComboBoxGroup"  SelectedValuePath="Id" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" Width="310" IsReadOnly="True"/>
 
-        <ListBox x:Name="ListBoxDecrees" DisplayMemberPath="DecreeNumber" SelectedValuePath="Id" SelectionMode="Multiple" HorizontalAlignment="Left" Height="240" Margin="20,70,0,0" VerticalAlignment="Top" Width="340"/>
+        <ListBox FontFamily="Franklin Gothic" x:Name="ListBoxDecrees" DisplayMemberPath="DecreeNumber" SelectedValuePath="Id" SelectionMode="Multiple" HorizontalAlignment="Center" Height="218" VerticalAlignment="Center" Width="310"/>
 
-        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="70,330,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSave_Click"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="210,330,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
+        <Button  FontFamily="Franklin Gothic Demi" x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Width="117" Click="ButtonSave_Click" RenderTransformOrigin="0.554,-7.933" Height="30"/>
+        <Button  FontFamily="Franklin Gothic Demi" x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="200,315,0,0" VerticalAlignment="Top" Width="120" Click="ButtonCancel_Click" RenderTransformOrigin="0.496,-8.437" Height="30"/>
     </Grid>
 </Window>

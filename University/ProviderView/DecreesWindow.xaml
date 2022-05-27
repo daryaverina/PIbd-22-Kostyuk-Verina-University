@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProviderView"
         mc:Ignorable="d"
-             Title="Приказы" Height="400" Width="350"
+             Title="Приказы" Height="400" Width="300"
         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Franklin Gothic Demi" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -16,7 +22,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="DataGridView" Grid.Row="0" Margin="5" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
+        <DataGrid FontFamily="Franklin Gothic" Name="DataGridView" Grid.Row="0" Margin="5" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
         <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="Add_Click"/>
         <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Click="Delete_Click"/>
         <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Click="Change_Click"/>

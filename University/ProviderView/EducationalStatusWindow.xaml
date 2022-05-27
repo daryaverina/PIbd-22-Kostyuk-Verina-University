@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProviderView"
         mc:Ignorable="d"
-       Title="Создание статуса обучения" Height="266" Width="350"
+       Title="Создание статуса обучения" Height="275" Width="300"
         Loaded="Window_loaded" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="0,0,0,0">
@@ -17,18 +17,18 @@
             <RowDefinition Height="0*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" MinWidth="150px" Height="230" Width="300" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="25,0,0,0" >
-            <Label Content="Основа обучения:" Height="27"/>
-            <ComboBox x:Name="ComboBox" DisplayMemberPath="FullName" SelectedValuePath="Id" Width="300"/>
-            <Label Content="Форма обучения:" />
-            <TextBox x:Name="TextBoxFStatus"/>
-            <Label Content="Дата создания записи:" />
-            <DatePicker x:Name="TextBoxDateOfChange" SelectedDateFormat="Short"/>
-            <Label Content="ФИО студента:" />
-            <ComboBox x:Name="ComboBoxStudents" DisplayMemberPath="FullName" SelectedValuePath="Id" Width="300"/>
+        <StackPanel  VerticalAlignment="Top"  HorizontalAlignment="Left" MinWidth="150px" Height="240" Width="250" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="25,0,0,0" >
+            <Label  FontFamily="Franklin Gothic" Content="Основа обучения:" Height="27"/>
+            <ComboBox  FontFamily="Franklin Gothic" x:Name="ComboBox" DisplayMemberPath="FullName" SelectedValuePath="Id" Width="250"/>
+            <Label  FontFamily="Franklin Gothic" Content="Форма обучения:" />
+            <TextBox  FontFamily="Franklin Gothic" x:Name="TextBoxFStatus"/>
+            <Label  FontFamily="Franklin Gothic" Content="Дата создания записи:" />
+            <DatePicker  FontFamily="Franklin Gothic" x:Name="TextBoxDateOfChange" SelectedDateFormat="Short"/>
+            <Label  FontFamily="Franklin Gothic" Content="ФИО студента:" />
+            <ComboBox  FontFamily="Franklin Gothic" x:Name="ComboBoxStudents" DisplayMemberPath="FullName" SelectedValuePath="Id" Width="250" />
         </StackPanel>
 
-        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="99,210,0,0" VerticalAlignment="Top" Width="100" Click="ButtonSave_Click" RenderTransformOrigin="0.554,-7.933" Grid.Row="1"/>
-        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="7,210,0,0" VerticalAlignment="Top" Width="100" Click="ButtonCancel_Click" RenderTransformOrigin="0.496,-8.437" Grid.Row="1" Grid.Column="1"/>
+        <Button  FontFamily="Franklin Gothic Demi" x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="25,208,0,0" VerticalAlignment="Top" Width="117" Click="ButtonSave_Click" RenderTransformOrigin="0.554,-7.933" Grid.Row="1" Height="30"/>
+        <Button  FontFamily="Franklin Gothic Demi" x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="155,208,0,0" VerticalAlignment="Top" Width="120" Click="ButtonCancel_Click" RenderTransformOrigin="0.496,-8.437" Grid.Row="1" Grid.ColumnSpan="2" Height="30"/>
     </Grid>
 </Window>

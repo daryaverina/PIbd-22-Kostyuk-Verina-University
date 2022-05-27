@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProviderView"
         mc:Ignorable="d"
-        Title="Статусы обучения" Height="400" Width="350"
+        Title="Статусы обучения" Height="400" Width="300"
         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,10 +16,10 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="DataGridView" Grid.Row="0" Margin="5" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
-        <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="Add_Click"/>
-        <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Click="Delete_Click"/>
-        <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Click="Change_Click"/>
-        <Button Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" Click="Cancel_Click" />
+        <DataGrid FontFamily="Franklin Gothic" Name="DataGridView" Grid.Row="0" Margin="5" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
+        <Button FontFamily="Franklin Gothic Demi" Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="Add_Click"/>
+        <Button FontFamily="Franklin Gothic Demi" Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Click="Delete_Click"/>
+        <Button FontFamily="Franklin Gothic Demi" Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Click="Change_Click"/>
+        <Button FontFamily="Franklin Gothic Demi" Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" Click="Cancel_Click" />
     </Grid>
 </Window>

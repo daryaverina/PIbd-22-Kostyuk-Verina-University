@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProviderView"
         mc:Ignorable="d"
-        Title="Деканат" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Деканат" Height="450" Width="700" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="MenuItem">
+            <Setter Property="FontFamily" Value="Franklin Gothic Demi" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="8" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="141*"></ColumnDefinition>
-            <ColumnDefinition Width="278*"/>
-            <ColumnDefinition Width="381*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top" FontSize="18">
+        <Menu Background="#A7FC00"  Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <MenuItem Name="miStudents" Header="Студенты" Click ="MenuItemStudents_Click" />
             <MenuItem Name="miDecrees" Header="Приказы" Click ="MenuItemDecrees_Click"/>
             <MenuItem Name="miStatuses" Header="Статусы обучения" Click="MenuItemStatuses_Click" />
@@ -26,11 +32,8 @@
             <Separator />
         </Menu>
 
-        <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
-               Source="resources/logo.png" Stretch="None" Margin="73,0,0,0"></Image>
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="278,0,0,0" >
-            <Label>ВЫ</Label>
-            <Label>ОТЧИСЛЕНЫ</Label>
-        </StackPanel>
+
+        <Image Grid.Row="1" HorizontalAlignment="center" VerticalAlignment="Center"
+               Source="resources/logo1.png" Stretch="Fill"></Image>
     </Grid>
 </Window>
