@@ -4,11 +4,11 @@
 
     public class ReportSubjectStudentViewModel
     {
-        public string SubjectName { get; set; }
+        public string FullName { get; set; }
 
         // = Faculty 
         public string FlowName { get; set; }
 
-        public List<Tuple<string>> Students { get; set; }
+        public List<Tuple<string>> Subjects { get; set; }
     }
 }

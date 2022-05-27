@@ -9,10 +9,10 @@ namespace UniversityContracts.BusinessLogicsContracts
     public interface IProviderReportLogic
     {
         // Получение списка дисциплин с указанием студентов
-        List<ReportSubjectStudentViewModel> GetSubjectStudent();
+        List<ReportSubjectStudentViewModel> GetSubjectStudent(List<StudentViewModel> students);
 
         // Получение списка статусов обучения с указанием потоков
-        List<ReportStatusesViewModel> GetStatuses(ProviderReportBindingModel model);
+        List<ReportStatusesViewModel> GetStatuses(ReportBindingModel model, int customerID);
 
         // Сохранение дисциплин с указанием студентов в файл-Word
         void SaveSubjectsToWordFile(ProviderReportBindingModel model);
@@ -21,6 +21,6 @@ namespace UniversityContracts.BusinessLogicsContracts
         void SaveSubjectsToExcelFile(ProviderReportBindingModel model);
 
         // Сохранение статусов обучения с указанием потоков в файл-Pdf
-        void SaveStatusesToPdfFile(ProviderReportBindingModel model);
+        void SaveStatusesToPdfFile(ReportBindingModel model, int customerID);
     }
 }

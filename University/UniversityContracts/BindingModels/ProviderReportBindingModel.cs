@@ -1,4 +1,6 @@
-﻿namespace UniversityContracts.BindingModels
+﻿using UniversityContracts.ViewModels;
+
+namespace UniversityContracts.BindingModels
 {
     public class ProviderReportBindingModel
     {
@@ -8,8 +10,6 @@
 
         public DateTime? DateTo { get; set; }
 
-        public string ProviderEmail { get; set; }
-
-        public List<int> StatusIds { get; set; }
+        public List<StudentViewModel> Students { get; set; }
     }
 }
