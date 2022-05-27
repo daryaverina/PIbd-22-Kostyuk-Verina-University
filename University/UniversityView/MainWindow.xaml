@@ -18,7 +18,7 @@
             <MenuItem Name="miPrescription" Header="Дисциплины" Click="MenuItemSubjects_Click" />
             <MenuItem Name="miGetList" Header="Получение списка" />
             <MenuItem Name="miGetReport" Header="Отчет" />
-            <MenuItem Name="miGetGraph" Header="График" />
+            <MenuItem Name="miGetGraph" Header="Привязка" Click="Binding_Click"/>
             <Separator />
         </Menu>
 

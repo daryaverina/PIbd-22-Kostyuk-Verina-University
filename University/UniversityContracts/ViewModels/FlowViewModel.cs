@@ -16,5 +16,6 @@ namespace UniversityContracts.ViewModels
 
         [DisplayName("Специальность")]
         public string Speciality { get; set; }
+        public int FlowId { get; set; }
     }
 }

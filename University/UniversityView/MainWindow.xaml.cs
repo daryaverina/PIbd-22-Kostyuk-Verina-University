@@ -53,5 +53,11 @@ namespace UniversityView
             var form = App.Container.Resolve<GroupsWindow>();
             form.ShowDialog();
         }
+
+        private void Binding_Click(object sender, RoutedEventArgs e)
+        {
+            var form = App.Container.Resolve<LinkFlowStudent>();
+            form.ShowDialog();
+        }
     }
 }

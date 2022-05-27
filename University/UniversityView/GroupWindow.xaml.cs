@@ -3,6 +3,9 @@ using System.Windows;
 using UniversityBusinessLogic.BusinessLogics;
 using UniversityContracts.BindingModels;
 using Unity;
+using UniversityContracts.ViewModels;
+using UniversityContracts.BusinessLogicsContracts;
+using System.Collections.Generic;
 
 namespace UniversityView
 {
@@ -13,19 +16,33 @@ namespace UniversityView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        GroupLogic _logic;
+
+        private readonly IGroupLogic _logic;
+        private readonly IFlowLogic _flowLogic;
+
         public int _customerId { get; set; }
         public int Id { set { id = value; } }
         private int? id;
-        public GroupWindow(GroupLogic logic)
+        public GroupWindow(IGroupLogic logic, IFlowLogic flowLogic)
         {
             InitializeComponent();
             _logic = logic;
+            _flowLogic = flowLogic;
         }
         private void Window_loaded(object sender, RoutedEventArgs e)
         {
-            if (id.HasValue)
+            List<FlowViewModel> list = _flowLogic.Read(null);
+            if (list != null)
+            {
 
+                ComboBoxFlow.DisplayMemberPath = "Flow_name";
+                ComboBoxFlow.SelectedValuePath = "Id";
+                ComboBoxFlow.ItemsSource = list;
+                ComboBoxFlow.SelectedItem = null;
+            }
+            else MessageBox.Show("не видны данные ");
+            if (id.HasValue)
+                
             {
                 try
                 {
@@ -35,6 +52,8 @@ namespace UniversityView
                         Spec_name.Text = view.Speciality;
                         Sem_amount.Text = view.SemestersAmount.ToString();
                         Date_created.Text = view.DateCreated.ToShortDateString();
+                        ComboBoxFlow.SelectedValue = view.FlowId;
+
                     }
                 }
                 catch (Exception ex)
@@ -55,6 +74,7 @@ namespace UniversityView
                     Speciality = Spec_name.Text,
                     SemestersAmount = Convert.ToInt32(Sem_amount.Text),
                     DateCreated = Convert.ToDateTime(Date_created.Text),
+                    FlowId = ((FlowViewModel)ComboBoxFlow.SelectedItem).Id,
                     CustomerID = (int)App.Customer.Id,
                     //FlowId = (int)App.Customer.Id,
                 });

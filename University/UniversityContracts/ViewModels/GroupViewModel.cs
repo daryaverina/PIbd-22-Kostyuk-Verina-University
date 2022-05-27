@@ -14,5 +14,9 @@ namespace UniversityContracts.ViewModels
 
         [DisplayName("Дата создания")]
         public DateTime DateCreated { get; set; }
+
+        public int FlowId { get; set; }
+
+        public int CustomerId { get; set; }
     }
 }
