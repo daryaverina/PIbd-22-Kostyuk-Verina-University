@@ -56,6 +56,7 @@ namespace UniversityDatabaseImplement.Implements
                     Speciality = model.Speciality,
                     SemestersAmount = model.SemestersAmount,
                     DateCreated = model.DateCreated,
+                    FlowId = (int)model.FlowId,
                     CustomerID = (int)model.CustomerID
                 };
                 context.Groups.Add(group);

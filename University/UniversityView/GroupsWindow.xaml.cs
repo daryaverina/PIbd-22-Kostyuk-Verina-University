@@ -33,7 +33,8 @@ namespace UniversityView
                 {
                     DataGridView.ItemsSource = list;
                     DataGridView.Columns[0].Visibility = Visibility.Hidden;
-                    //DataGridView.Columns[4].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[4].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[5].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
@@ -93,14 +94,14 @@ namespace UniversityView
             {
                 var window = Container.Resolve<GroupWindow>();
                 GroupViewModel flow = (GroupViewModel)DataGridView.SelectedCells[0].Item;
-                /*window.Id = Convert.ToInt32(flow.Id);
+                window.Id = Convert.ToInt32(flow.Id);
                 window._customerId = _customerId;
                 window.ShowDialog();
                 if (window.DialogResult == true)
                 {
                     LoadData();
 
-                }*/
+                }
             }
         }
 

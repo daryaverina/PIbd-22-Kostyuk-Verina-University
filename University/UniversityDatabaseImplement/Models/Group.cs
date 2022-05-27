@@ -20,5 +20,6 @@ namespace UniversityDatabaseImplement.Models
         public virtual List<DecreeGroup> GroupDecrees { get; set; }
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
+        public int FlowId { get;  set; }
     }
 }
