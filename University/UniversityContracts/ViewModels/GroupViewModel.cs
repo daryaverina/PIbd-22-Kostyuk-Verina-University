@@ -17,6 +17,6 @@ namespace UniversityContracts.ViewModels
 
         public int FlowId { get; set; }
 
-        public int CustomerId { get; set; }
+        public int CustomerID { get; set; }
     }
 }

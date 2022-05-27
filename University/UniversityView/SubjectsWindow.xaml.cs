@@ -49,8 +49,12 @@ namespace UniversityView
         {
             try
             {
-                var list = _logic.Read(null);
+                var list = _logic.Read(new SubjectBindingModel
+                {
+                    CustomerID = (int)App.Customer.Id
+                });
                 if (list != null)
+                    if (list != null)
                 {
                     DataGridView.ItemsSource = list;
                     DataGridView.Columns[0].Visibility = Visibility.Hidden;

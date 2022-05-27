@@ -33,13 +33,19 @@ namespace UniversityView
         {
             try
             {
-                var list = _logic.Read(null);
+                var list = _logic.Read(new FlowBindingModel
+                {
+                    CustomerID = (int)App.Customer.Id
+                });
+                if (list != null)
                 if (list != null)
                 {
                     DataGridView.ItemsSource = list;
                     DataGridView.Columns[0].Visibility = Visibility.Hidden;
                     DataGridView.Columns[4].Visibility = Visibility.Hidden;
-                }
+                    DataGridView.Columns[5].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[6].Visibility = Visibility.Hidden;
+                    }
             }
             catch (Exception ex)
             {

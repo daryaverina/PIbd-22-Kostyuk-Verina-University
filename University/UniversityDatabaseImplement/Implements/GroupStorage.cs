@@ -27,7 +27,7 @@ namespace UniversityDatabaseImplement.Implements
             return context.Groups
             .Include(rec => rec.GroupDecrees)
             .ThenInclude(rec => rec.Decree)
-            .Where(rec => rec.Speciality.Contains(model.Speciality))
+            .Where(rec => (rec.CustomerID == model.CustomerID))
             .ToList()
             .Select(CreateModel)
             .ToList();
@@ -124,7 +124,8 @@ namespace UniversityDatabaseImplement.Implements
                 Id = group.Id,
                 Speciality = group.Speciality,
                 SemestersAmount = group.SemestersAmount,
-                DateCreated = group.DateCreated
+                DateCreated = group.DateCreated,
+                CustomerID = group.CustomerID,
             };
         }
     }

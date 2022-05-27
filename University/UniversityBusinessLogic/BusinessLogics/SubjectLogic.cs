@@ -47,7 +47,8 @@ namespace UniversityBusinessLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
-                return new List<SubjectViewModel> { _subjectStorage.GetElement(model) };
+               // throw new Exception(model.Id.ToString());
+                 return new List<SubjectViewModel> { _subjectStorage.GetElement(model) };
             }
             return _subjectStorage.GetFilteredList(model);
         }
