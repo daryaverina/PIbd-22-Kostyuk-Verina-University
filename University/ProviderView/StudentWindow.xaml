@@ -1,0 +1,24 @@
+﻿<Window x:Class="ProviderView.StudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProviderView"
+        mc:Ignorable="d"
+         Title="Регистрация студента" Height="200" Width="350" Loaded="StudentWindow_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Center" MinWidth="150px" Height="130" Width="300" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" Grid.RowSpan="2" >
+            <Label Content="ФИО:" Height="27"/>
+            <TextBox x:Name="TextBoxFullName"/>
+            <Label Content="Телефонный номер:" />
+            <TextBox x:Name="TextBoxPhoneNumber"/>
+        </StackPanel>
+        
+        <Button x:Name="ButtonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="105,130,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100" Click="ButtonSave_Click" RenderTransformOrigin="0.554,-7.933"/>
+        <Button x:Name="ButtonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="231,130,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100" Click="ButtonCancel_Click" RenderTransformOrigin="0.496,-8.437"/>
+    </Grid>
+</Window>
