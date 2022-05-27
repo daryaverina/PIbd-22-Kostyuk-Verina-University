@@ -13,12 +13,12 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.Decrees
-            //       наверно не надо этим засорять вывод списка   ?? 
-            //.Include(rec => rec.DecreeStudents)
-            //.ThenInclude(rec => rec.Student)
-            //.Include(rec => rec.DecreeGroups)
-            //.ThenInclude(rec => rec.Group)
-                .Include(rec => rec.ProviderId)
+                .Include(rec => rec.DecreeGroups)
+                    .ThenInclude(rec => rec.Group)
+                        .ThenInclude(rec => rec.Speciality)
+                .Include(rec => rec.DecreeGroups)
+                    .ThenInclude(rec => rec.Group)
+                        .ThenInclude(rec => rec.SemestersAmount)
                 .ToList()
                 .Select(CreateModel)
                 .ToList();
@@ -34,12 +34,13 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
        
             return context.Decrees
-                .Include(rec => rec.ProviderId)
-                .Include(rec => rec.DecreeStudents)
-                .ThenInclude(rec => rec.Student)
                 .Include(rec => rec.DecreeGroups)
-                .ThenInclude(rec => rec.Group)
-                .Where(rec => rec.DecreeNumber.Equals(model.DecreeNumber)) 
+                    .ThenInclude(rec => rec.Group)
+                        .ThenInclude(rec => rec.Speciality)
+                .Include(rec => rec.DecreeGroups)
+                    .ThenInclude(rec => rec.Group)
+                        .ThenInclude(rec => rec.SemestersAmount)
+                .Where(rec => rec.ProviderId == model.ProviderId)
                 .ToList()
                 .Select(CreateModel)
                 .ToList();
@@ -55,11 +56,12 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             var decree = context.Decrees
-                .Include(rec => rec.ProviderId)
-                .Include(rec => rec.DecreeStudents)
-                .ThenInclude(rec => rec.Student)
                 .Include(rec => rec.DecreeGroups)
-                .ThenInclude(rec => rec.Group)
+                    .ThenInclude(rec => rec.Group)
+                        .ThenInclude(rec => rec.Speciality)
+                .Include(rec => rec.DecreeGroups)
+                    .ThenInclude(rec => rec.Group)
+                        .ThenInclude(rec => rec.SemestersAmount)
                 .ToList()
                 .FirstOrDefault(rec => rec.Id == model.Id || rec.DecreeNumber == model.DecreeNumber); 
 
@@ -73,7 +75,16 @@ namespace UniversityDatabaseImplement.Implements
 
             try
             {
-                context.Decrees.Add(CreateModel(model, new Decree(), context));
+                Decree decree = new Decree
+                {
+                    ProviderId = model.ProviderId,
+                    DateOfCreation = model.DateOfCreation,
+                    DecreeNumber = model.DecreeNumber, 
+                };
+
+                context.Decrees.Add(decree);
+                context.SaveChanges();
+                CreateModel(model, decree, context);
                 context.SaveChanges();
                 transaction.Commit();
             }
@@ -108,6 +119,7 @@ namespace UniversityDatabaseImplement.Implements
             }
         }
 
+       // зачищать связи ?
         public void Delete(DecreeBindingModel model)
         {
             using var context = new UniversityDatabase();
@@ -125,7 +137,6 @@ namespace UniversityDatabaseImplement.Implements
             }
         }
 
-        // ПОПРАВИТЬ: создание и изменение записи приказа с возможностью выбора нескольких студентов из списка
         private static Decree CreateModel(DecreeBindingModel model, Decree decree, UniversityDatabase context)
 
         {
@@ -136,11 +147,9 @@ namespace UniversityDatabaseImplement.Implements
             if (model.Id.HasValue)
             {
                 var decreeStudents = context.DecreeStudents.Where(rec => rec.DecreeId == model.Id.Value).ToList();
-                var decreeGroups = context.DecreeGroups.Where(rec => rec.DecreeId == model.Id.Value).ToList();
 
                 // Удалили те, которых нет в модели
                 context.DecreeStudents.RemoveRange(decreeStudents.Where(rec => !model.DecreeStudents.ContainsKey(rec.StudentId)).ToList());
-                context.DecreeGroups.RemoveRange(decreeGroups.Where(rec => !model.DecreeGroups.ContainsKey(rec.GroupId)).ToList());
                 context.SaveChanges();
             }
 
@@ -174,7 +183,6 @@ namespace UniversityDatabaseImplement.Implements
             {
                 Id = decree.Id,
                 DateOfCreation = decree.DateOfCreation,
-                DecreeGroups = decree.DecreeGroups.ToDictionary(recDG => recDG.GroupId, recDG => recDG.Group.Speciality),
                 DecreeStudents = decree.DecreeStudents.ToDictionary(recDG => recDG.StudentId, recDG => recDG.Student.FullName),
                 ProviderId = decree.ProviderId
             };
