@@ -53,7 +53,7 @@ namespace UniversityRestApi.Controllers
         {
             return new ProviderReportBindingModel
             {
-                StatusesIds = _status.Read(new EducationalStatusBindingModel { ProviderId = providerId }).Select(rec => rec.Id).ToList()
+                StatusIds = _status.Read(new EducationalStatusBindingModel { ProviderId = providerId }).Select(rec => rec.Id).ToList()
             };
         }
     }

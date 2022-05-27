@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using UniversityBusinessLogic.OfficePackage;
+using UniversityBusinessLogic.OfficePackage.Implements;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,10 @@ builder.Services.AddTransient<IStudentLogic, StudentLogic>();
 builder.Services.AddTransient<IFlowLogic, FlowLogic>();
 builder.Services.AddTransient<IGroupLogic, GroupLogic>();
 builder.Services.AddTransient<ISubjectLogic, SubjectLogic>();
+
+builder.Services.AddTransient<ProviderAbstractSaveToExcel, ProviderSaveToExcel>();
+builder.Services.AddTransient<ProviderAbstractSaveToWord, ProviderSaveToWord>();
+builder.Services.AddTransient<ProviderAbstractSaveToPdf, ProviderSaveToPdf>();
 
 builder.Services.AddSingleton<MailKitWorker>();
 
@@ -61,12 +67,17 @@ app.MapControllers();
 var mailSender = app.Services.GetService<MailKitWorker>();
 mailSender.MailConfig(new MailConfigBindingModel
 {
-    MailLogin = Configuration?.GetSection("MailLogin")?.Value.ToString(),
-    MailPassword = Configuration?.GetSection("MailPassword")?.Value.ToString(),
-    SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.Value.ToString(),
-    SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.Value.ToString()),
-    PopHost = Configuration?.GetSection("PopHost")?.Value.ToString(),
-    PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.Value.ToString())
+    //SmtpClientHost = configuration["SmtpClientHost"],
+    //SmtpClientPort = Convert.ToInt32(configuration["SmtpClientPort"]),
+    //MailLogin = configuration["MailLogin"],
+    //MailPassword = configuration["MailPassword"],
+
+    //MailLogin = Configuration?.GetSection("MailLogin")?.Value.ToString(),
+    //MailPassword = Configuration?.GetSection("MailPassword")?.Value.ToString(),
+    //SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.Value.ToString(),
+    //SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.Value.ToString()),
+    //PopHost = Configuration?.GetSection("PopHost")?.Value.ToString(),
+    //PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.Value.ToString())
 });
 
 app.Run();
