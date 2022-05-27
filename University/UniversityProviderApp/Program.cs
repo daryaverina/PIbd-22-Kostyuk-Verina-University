@@ -29,19 +29,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-
-//var mailSender = app.Services.GetService<MailKitWorker>();
-
-//mailSender.MailConfig(new MailConfigBindingModel
-//{
-//    MailLogin = Configuration?.GetSection("MailLogin")?.Value.ToString(),
-//    MailPassword = Configuration?.GetSection("MailPassword")?.Value.ToString(),
-//    SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.Value.ToString(),
-//    SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.Value.ToString()),
-//    PopHost = Configuration?.GetSection("PopHost")?.Value.ToString(),
-//    PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.Value.ToString())
-//});
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

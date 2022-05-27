@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UniversityBusinessLogic.OfficePackage;
 
-namespace TypographyBusinessLogic.OfficePackage.Implements
+namespace UniversityBusinessLogic.OfficePackage.Implements
 {
     public class ProviderSaveToWord : ProviderAbstractSaveToWord
     {

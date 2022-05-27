@@ -5,7 +5,7 @@ using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using UniversityBusinessLogic.OfficePackage;
 
-namespace TypographyBusinessLogic.OfficePackage.Implements
+namespace UniversityBusinessLogic.OfficePackage.Implements
 {
     public class ProviderSaveToPdf : ProviderAbstractSaveToPdf
     {

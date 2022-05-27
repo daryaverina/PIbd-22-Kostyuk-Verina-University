@@ -1,0 +1,36 @@
+﻿<Window x:Class="ProviderView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProviderView"
+        mc:Ignorable="d"
+        Title="Деканат" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="141*"></ColumnDefinition>
+            <ColumnDefinition Width="278*"/>
+            <ColumnDefinition Width="381*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top" FontSize="18">
+            <MenuItem Name="miStudents" Header="Студенты" Click ="MenuItemStudents_Click" />
+            <MenuItem Name="miDecrees" Header="Приказы" Click ="MenuItemDecrees_Click"/>
+            <MenuItem Name="miStatuses" Header="Статусы обучения" Click="MenuItemStatuses_Click" />
+            <MenuItem Name="miGetList" Header="Получение списка" />
+            <MenuItem Name="miGetReport" Header="Отчет" />
+            <Separator />
+        </Menu>
+
+        <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+               Source="resources/logo.png" Stretch="None" Margin="73,0,0,0"></Image>
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="278,0,0,0" >
+            <Label>ВЫ</Label>
+            <Label>ОТЧИСЛЕНЫ</Label>
+        </StackPanel>
+    </Grid>
+</Window>

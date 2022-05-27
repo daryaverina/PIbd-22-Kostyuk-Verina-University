@@ -13,13 +13,13 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             return context.EducationalStatuses
-                .Include(rec => rec.ProviderId)
+                .Include(rec => rec.Student)
+                .ThenInclude(rec => rec.FullName)
+                .ToList()
                 .Select(CreateModel)
                 .ToList();
         }
 
-        // получение отчета по записям статуса обучения студентов
-        // на указанном потоке за определенный период 
         public List<EducationalStatusViewModel> GetFilteredList(EducationalStatusBindingModel model)
         {
             if (model == null)
@@ -32,12 +32,10 @@ namespace UniversityDatabaseImplement.Implements
 
             return context.EducationalStatuses
                 .Include(rec => rec.Student)
-                .Include(rec => rec.ProviderId)
-                // сначала проверяем провайдера потом идем дальше
-                // идем дальше: если есть ограничения по дате справа и слева сверяемся с ними
-                // потом надо как-то выбирать те записи у которых студенты на указанном потоке
+                .ThenInclude(rec => rec.FullName)
                 .Where(rec => (rec.ProviderId == model.ProviderId ))
-                 //       && (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateOfChange.Date >= model.DateFrom.Value.Date && rec.DateOfChange.Date <= model.DateTo.Value.Date)))
+                 //.Where(rec => model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateOfChange.Date >= model.DateFrom.Value.Date && rec.DateOfChange.Date <= model.DateTo.Value.Date)
+                 .ToList()
                 .Select(CreateModel)
                 .ToList();
         }
@@ -52,7 +50,8 @@ namespace UniversityDatabaseImplement.Implements
             using var context = new UniversityDatabase();
 
             var status = context.EducationalStatuses
-                .Include(rec => rec.ProviderId)
+                .Include(rec => rec.Student)
+                .ThenInclude(rec => rec.FullName)
                 .FirstOrDefault(rec => rec.Id == model.Id);
 
             return status != null ? CreateModel(status) : null;
@@ -62,22 +61,42 @@ namespace UniversityDatabaseImplement.Implements
         {
             using var context = new UniversityDatabase();
 
-            context.EducationalStatuses.Add(CreateModel(model, new EducationalStatus()));
-            context.SaveChanges();
+            using var transaction = context.Database.BeginTransaction();
+            try
+            {
+                context.EducationalStatuses.Add(CreateModel(model, new EducationalStatus()));
+                context.SaveChanges();
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
 
         public void Update(EducationalStatusBindingModel model)
         {
             using var context = new UniversityDatabase();
-
-            var status = context.EducationalStatuses.FirstOrDefault(rec => rec.Id == model.Id);
-            if (status == null)
+            using var transaction = context.Database.BeginTransaction();
+            try
             {
-                throw new Exception("Статус не найден");
-            }
+                var status = context.EducationalStatuses.FirstOrDefault(rec => rec.Id == model.Id);
+                if (status == null)
+                {
+                    throw new Exception("Статус не найден");
+                }
 
-            CreateModel(model, status);
-            context.SaveChanges();
+                CreateModel(model, status);
+                context.SaveChanges();
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
+           
         }
 
         public void Delete(EducationalStatusBindingModel model)

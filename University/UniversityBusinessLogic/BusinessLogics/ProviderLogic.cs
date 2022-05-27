@@ -42,7 +42,7 @@ namespace UniversityBusinessLogic.BusinessLogics
             if (!Regex.IsMatch(model.Email, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
             {
-                throw new Exception("Проверьте, правильно ли введена почта");
+                throw new Exception("Проверьте, правильно ли вы указали почту");
             }
 
             if (model.Id.HasValue)

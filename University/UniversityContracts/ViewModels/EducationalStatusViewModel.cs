@@ -19,7 +19,6 @@ namespace UniversityContracts.ViewModels
 
         [Column(title: "Дата изменения статуса", width: 200)]
         public DateTime DateOfChange { get; set; }
-
         public int ProviderId { get; set; }
     }
 }
